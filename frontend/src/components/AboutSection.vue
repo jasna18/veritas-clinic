@@ -7,6 +7,13 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
 <template>
   <section id="about" class="section about" aria-labelledby="about-title">
     <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">(01) About us</p>
+        <h2 id="about-title" class="display">
+          Trusted &amp; professional in <span class="script">oral care</span>
+        </h2>
+      </div>
+
       <div class="about__grid">
         <figure class="about__portrait placeholder">
           <span class="placeholder__label">Photo · {{ clinic.doctor.name }}, founder</span>
@@ -17,8 +24,6 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
         </figure>
 
         <div class="about__copy">
-          <p class="eyebrow eyebrow--muted">Veritas Polyclinic Dubai</p>
-          <h2 id="about-title" class="about__title">Trusted &amp; professional in oral care</h2>
           <p>
             Welcome to Veritas Polyclinic – your trusted partner in oral care in Dubai. We strive to
             offer a personal and innovative approach to dentistry, where the well-being of every
@@ -80,17 +85,10 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
 }
 
 .about__copy {
-  padding-top: 8px;
   max-width: 600px;
 }
 
-.about__title {
-  margin: 20px 0 28px;
-  font-size: clamp(32px, 4vw, 44px);
-  color: var(--slate);
-}
-
-.about__copy p:not(.eyebrow) {
+.about__copy p {
   font-size: 15px;
   line-height: 1.85;
 }

@@ -9,7 +9,9 @@ const pad = (n) => String(n).padStart(2, '0')
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">(02) Treatments</p>
-        <h2 id="treatments-title" class="display">Our <span class="script">treatments</span></h2>
+        <h2 id="treatments-title" class="display">
+          What can we do <span class="script">for you?</span>
+        </h2>
       </div>
 
       <ul class="treatments__grid">

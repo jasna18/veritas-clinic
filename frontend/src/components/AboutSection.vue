@@ -15,13 +15,15 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
       </div>
 
       <div class="about__grid">
-        <img
-          :src="doctorPhoto"
-          alt="Founder of Veritas Polyclinic"
-          class="about__photo"
-          width="148"
-          height="148"
-        />
+        <div class="about__portrait">
+          <img
+            :src="doctorPhoto"
+            alt="Founder of Veritas Polyclinic"
+            class="about__photo"
+            width="148"
+            height="148"
+          />
+        </div>
 
         <div class="about__copy">
           <p>
@@ -50,10 +52,18 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
 <style scoped>
 .about__grid {
   display: grid;
-  /* Match .section-head columns so the text lines up under the heading */
-  grid-template-columns: 240px minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 11fr);
+  gap: 56px;
   align-items: start;
+}
+
+/* Soft card holding the doctor's photo */
+.about__portrait {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 56px 24px;
+  background: linear-gradient(170deg, #eceee9 0%, #c9d2ce 100%);
 }
 
 /* Round doctor headshot */
@@ -113,7 +123,7 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
   }
 
   /* On smaller screens the photo follows the welcome text */
-  .about__photo {
+  .about__portrait {
     order: 1;
   }
 

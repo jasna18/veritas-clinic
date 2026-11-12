@@ -27,7 +27,7 @@ const gallery = [
         <div class="about__portrait">
           <img
             :src="doctorPhoto"
-            alt="Founder of Veritas Polyclinic"
+            :alt="`${clinic.doctor.name}, founder of Veritas Polyclinic`"
             class="about__photo"
             width="471"
             height="468"
@@ -51,6 +51,7 @@ const gallery = [
           <!-- Doctor's name as a signature, in the same script as "oral care" -->
           <p class="about__signature">
             <span class="script">{{ clinic.doctor.name }}</span>
+            <span class="about__role">Founder</span>
           </p>
         </div>
       </div>
@@ -96,9 +97,22 @@ const gallery = [
 }
 
 .about__copy .about__signature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   margin-top: 28px;
   font-size: clamp(30px, 3.4vw, 38px);
   line-height: 1.2;
+}
+
+.about__role {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .about__gallery {

@@ -18,7 +18,7 @@ export const clinic = {
   parking: '[PARKING INFO]',
   directionsUrl: 'https://maps.google.com/?q=Dubai',
   doctor: {
-    name: '[DOCTOR NAME]',
+    name: 'Dr. Rawa Taher',
     title: '[Qualification] · Founder',
   },
 }

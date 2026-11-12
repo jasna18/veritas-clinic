@@ -170,8 +170,14 @@ import { marqueeItems } from '../data/content.js'
 }
 
 @media (max-width: 700px) {
+  /* Size to content on phones so there's no empty band above the heading */
+  .hero {
+    min-height: 0;
+  }
+
   .hero__content {
-    padding-top: calc(var(--header-h) + 80px);
+    padding-top: calc(var(--header-h) + 48px);
+    padding-bottom: 36px;
   }
 
   .hero__tag {

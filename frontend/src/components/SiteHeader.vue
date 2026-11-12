@@ -68,6 +68,11 @@ onBeforeUnmount(() => {
     </div>
   </header>
 
+  <!-- Dimmed page behind the desktop side panel; click to close -->
+  <Transition name="backdrop">
+    <div v-if="menuOpen" class="menu-backdrop" aria-hidden="true" @click="closeMenu"></div>
+  </Transition>
+
   <Transition name="menu">
     <div
       v-if="menuOpen"
@@ -289,6 +294,72 @@ onBeforeUnmount(() => {
 .menu-enter-from,
 .menu-leave-to {
   opacity: 0;
+}
+
+.menu-backdrop {
+  display: none;
+}
+
+/* Desktop & tablet: menu is a side panel from the right instead of full screen */
+@media (min-width: 768px) {
+  .menu-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background: rgba(30, 38, 36, 0.45);
+  }
+
+  .menu {
+    inset: 0 0 0 auto;
+    width: min(420px, 100%);
+    padding: 20px 36px 32px;
+    box-shadow: -24px 0 60px rgba(20, 28, 26, 0.25);
+  }
+
+  .menu__nav {
+    justify-content: flex-start;
+    padding: 48px 0 32px;
+  }
+
+  .menu__link {
+    gap: 16px;
+    padding: 14px 0;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+  }
+
+  .menu__foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .menu__foot .btn {
+    width: 100%;
+    margin: 16px 0 0;
+  }
+
+  .menu-enter-active,
+  .menu-leave-active {
+    transition: transform 320ms var(--ease);
+  }
+
+  .menu-enter-from,
+  .menu-leave-to {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+
+  .backdrop-enter-active,
+  .backdrop-leave-active {
+    transition: opacity 320ms var(--ease);
+  }
+
+  .backdrop-enter-from,
+  .backdrop-leave-to {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 600px) {

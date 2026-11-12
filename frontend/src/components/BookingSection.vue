@@ -51,7 +51,7 @@ import { bookingSteps } from '../data/content.js'
 }
 
 .booking__title {
-  font-size: clamp(40px, 5.6vw, 64px); /* same as .display */
+  font-size: var(--heading-size);
   color: var(--cream);
 }
 

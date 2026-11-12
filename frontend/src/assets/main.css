@@ -26,6 +26,9 @@
   --max: 1200px;
   --header-h: 72px;
 
+  /* Section headings (About, Treatments, Approach, Results, Booking, FAQ, Contact, Location) */
+  --heading-size: clamp(32px, 4.2vw, 48px);
+
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --dur: 200ms;
@@ -121,7 +124,7 @@ p {
 
 /* Big display heading with an inline script accent */
 .display {
-  font-size: clamp(40px, 5.6vw, 64px);
+  font-size: var(--heading-size);
   color: var(--slate);
 }
 

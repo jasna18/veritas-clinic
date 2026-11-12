@@ -27,7 +27,7 @@
   --header-h: 72px;
 
   /* Section headings (About, Treatments, Approach, Results, Booking, FAQ, Contact, Location) */
-  --heading-size: clamp(32px, 4.2vw, 48px);
+  --heading-size: clamp(28px, 3.5vw, 40px);
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);

@@ -15,7 +15,7 @@ function toggle(i) {
   <section id="faq" class="section faq" aria-labelledby="faq-title">
     <div class="container faq__grid">
       <div>
-        <p class="eyebrow">(06) Questions</p>
+        <p class="eyebrow eyebrow--line">Questions</p>
         <h2 id="faq-title" class="faq__title">
           Good<br />to <span class="script">know</span>
         </h2>

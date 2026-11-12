@@ -51,7 +51,7 @@ function reset() {
   <section id="contact" class="section contact" aria-labelledby="contact-title">
     <div class="container contact__grid">
       <div>
-        <p class="eyebrow">(07) Contact</p>
+        <p class="eyebrow eyebrow--line">Contact</p>
         <h2 id="contact-title" class="display contact__title">
           Let's <span class="script">talk</span>
         </h2>

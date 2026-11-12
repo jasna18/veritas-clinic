@@ -108,7 +108,7 @@ p {
   padding: 120px 0;
 }
 
-/* Eyebrow labels like "(02) TREATMENTS" */
+/* Eyebrow labels like "TREATMENTS" */
 .eyebrow {
   font-family: var(--font-body);
   font-size: 11px;
@@ -120,6 +120,21 @@ p {
 
 .eyebrow--muted {
   color: var(--muted);
+}
+
+/* Section labels: short rule before the text, e.g. "—— TREATMENTS" */
+.eyebrow--line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow--line::before {
+  content: '';
+  flex-shrink: 0;
+  width: 28px;
+  height: 1px;
+  background: currentColor;
 }
 
 /* Big display heading with an inline script accent */

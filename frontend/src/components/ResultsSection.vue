@@ -6,7 +6,7 @@ import { results } from '../data/content.js'
   <section id="results" class="section results" aria-labelledby="results-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">(04) Smile results</p>
+        <p class="eyebrow eyebrow--line">Smile results</p>
         <div>
           <h2 id="results-title" class="display">Before <span class="script">&amp;</span> after</h2>
           <p class="results__note">

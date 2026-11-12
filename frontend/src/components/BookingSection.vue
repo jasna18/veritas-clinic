@@ -7,7 +7,7 @@ import { bookingSteps } from '../data/content.js'
     <div class="container">
       <div class="booking__head">
         <div>
-          <p class="eyebrow booking__eyebrow">(05) Book a visit</p>
+          <p class="eyebrow eyebrow--line booking__eyebrow">Book a visit</p>
           <h2 id="book-title" class="booking__title">
             Book in <span class="script">three</span> steps
           </h2>

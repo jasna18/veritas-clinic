@@ -7,7 +7,7 @@ import { clinic } from '../data/content.js'
     <div class="container">
       <div class="location__head">
         <div>
-          <p class="eyebrow">(08) Location</p>
+          <p class="eyebrow eyebrow--line">Location</p>
           <h2 id="location-title" class="display location__title">
             Find the <span class="script">studio</span>
           </h2>

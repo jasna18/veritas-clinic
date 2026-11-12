@@ -8,7 +8,7 @@ const pad = (n) => String(n).padStart(2, '0')
   <section id="treatments" class="section treatments" aria-labelledby="treatments-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">(02) Treatments</p>
+        <p class="eyebrow eyebrow--line">Treatments</p>
         <h2 id="treatments-title" class="display">
           What can we do <span class="script">for you?</span>
         </h2>

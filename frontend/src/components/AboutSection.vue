@@ -8,7 +8,7 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
   <section id="about" class="section about" aria-labelledby="about-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">(01) About us</p>
+        <p class="eyebrow eyebrow--line">About us</p>
         <h2 id="about-title" class="display">
           Trusted &amp; professional in <span class="script">oral care</span>
         </h2>

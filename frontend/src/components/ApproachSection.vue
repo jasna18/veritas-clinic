@@ -6,7 +6,7 @@ import { steps } from '../data/content.js'
   <section id="approach" class="section approach" aria-labelledby="approach-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">(03) Our approach</p>
+        <p class="eyebrow eyebrow--line">Our approach</p>
         <h2 id="approach-title" class="display">
           Four steps, <span class="script">never rushed</span>
         </h2>

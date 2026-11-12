@@ -245,10 +245,10 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: baseline;
   gap: 20px;
-  padding: 10px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--line-light);
   font-family: var(--font-display);
-  font-size: clamp(28px, 5vw, 48px);
+  font-size: clamp(20px, 2.6vw, 28px);
   text-transform: uppercase;
   line-height: 1.2;
   transition: color var(--dur) var(--ease);

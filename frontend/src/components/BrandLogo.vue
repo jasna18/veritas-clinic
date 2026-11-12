@@ -1,15 +1,48 @@
 <template>
-  <svg class="logo" viewBox="0 0 64 96" role="img" aria-label="Veritas Polyclinic">
-    <!-- Oval, broken around the wordmark -->
+  <svg class="logo" viewBox="0 0 740 1100" role="img" aria-label="Veritas Polyclinic Dubai">
+    <defs>
+      <!-- Hides the oval behind the wordmark -->
+      <mask id="veritas-logo-gap">
+        <rect width="740" height="1100" fill="#fff" />
+        <rect x="0" y="390" width="740" height="315" fill="#000" />
+      </mask>
+    </defs>
+
+    <!-- Tapered oval: thick at the sides, fine at top and bottom -->
     <path
-      d="M15.9 34 A17 44 0 0 1 48.1 34 M15.9 62 A17 44 0 0 0 48.1 62"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2.2"
+      mask="url(#veritas-logo-gap)"
+      fill="currentColor"
+      fill-rule="evenodd"
+      d="M367 5 A295 545 0 1 1 366.99 5 Z M367 32 A246 518 0 1 0 367.01 32 Z"
     />
-    <text x="32" y="46" text-anchor="middle" font-family="Marcellus, serif" font-size="11.5" fill="currentColor">VERITAS</text>
-    <text x="32" y="53.5" text-anchor="middle" font-family="Lato, sans-serif" font-size="4.6" letter-spacing="0.8" fill="currentColor">POLYCLINIC</text>
-    <text x="32" y="59.5" text-anchor="middle" font-family="Lato, sans-serif" font-size="3.4" letter-spacing="0.8" fill="currentColor">DUBAI</text>
+
+    <text
+      x="10"
+      y="562"
+      textLength="715"
+      lengthAdjust="spacing"
+      font-family="Marcellus, 'Times New Roman', serif"
+      font-size="188"
+      fill="currentColor"
+    >VERITAS</text>
+    <text
+      x="90"
+      y="675"
+      textLength="560"
+      lengthAdjust="spacing"
+      font-family="Marcellus, 'Times New Roman', serif"
+      font-size="100"
+      fill="currentColor"
+    >POLYCLINIC</text>
+    <text
+      x="275"
+      y="770"
+      textLength="185"
+      lengthAdjust="spacing"
+      font-family="Marcellus, 'Times New Roman', serif"
+      font-size="64"
+      fill="currentColor"
+    >DUBAI</text>
   </svg>
 </template>
 
@@ -18,5 +51,6 @@
   height: 100%;
   width: auto;
   display: block;
+  overflow: visible;
 }
 </style>

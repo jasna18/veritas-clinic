@@ -13,8 +13,7 @@ import { steps } from '../data/content.js'
       </div>
 
       <ol class="steps">
-        <li v-for="(s, i) in steps" :key="s.title" class="step">
-          <span class="step__num">No.0{{ i + 1 }}</span>
+        <li v-for="s in steps" :key="s.title" class="step">
           <h3 class="step__title">{{ s.title }}</h3>
           <p class="step__body">{{ s.body }}</p>
         </li>
@@ -44,14 +43,9 @@ import { steps } from '../data/content.js'
   border-bottom: 1px solid var(--line);
 }
 
-.step__num {
-  padding-top: 10px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--ink);
-}
-
+/* First column stays empty so titles keep their position under the heading */
 .step__title {
+  grid-column: 2;
   padding-left: 60px;
   font-size: clamp(26px, 3vw, 34px);
   color: var(--slate);
@@ -71,11 +65,8 @@ import { steps } from '../data/content.js'
     padding: 28px 0;
   }
 
-  .step__num {
-    padding-top: 0;
-  }
-
   .step__title {
+    grid-column: auto;
     padding-left: 0;
   }
 

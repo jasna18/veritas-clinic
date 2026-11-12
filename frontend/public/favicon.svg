@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1100">
+  <defs>
+    <mask id="gap">
+      <rect width="1100" height="1100" fill="#fff"/>
+      <rect x="0" y="390" width="1100" height="315" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="1100" height="1100" rx="180" fill="#f6efe5"/>
+  <g transform="translate(180 0)" fill="#4a5a56">
+    <path mask="url(#gap)" fill-rule="evenodd" d="M367 5 A295 545 0 1 1 366.99 5 Z M367 32 A246 518 0 1 0 367.01 32 Z"/>
+    <text x="10" y="562" textLength="715" lengthAdjust="spacingAndGlyphs" font-family="Marcellus, 'Times New Roman', Georgia, serif" font-size="188">VERITAS</text>
+    <text x="90" y="675" textLength="560" lengthAdjust="spacingAndGlyphs" font-family="Marcellus, 'Times New Roman', Georgia, serif" font-size="100">POLYCLINIC</text>
+    <text x="275" y="770" textLength="185" lengthAdjust="spacingAndGlyphs" font-family="Marcellus, 'Times New Roman', Georgia, serif" font-size="64">DUBAI</text>
+  </g>
+</svg>

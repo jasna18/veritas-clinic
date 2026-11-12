@@ -4,6 +4,7 @@ import treatmentRoom from '../assets/images/clinic-treatment-room.webp'
 import reception from '../assets/images/clinic-reception.webp'
 import lounge from '../assets/images/clinic-lounge.webp'
 import ClinicGallery from './ClinicGallery.vue'
+import { clinic } from '../data/content.js'
 
 const gallery = [
   { src: treatmentRoom, alt: 'Treatment room with a sage-green dental chair and garden view' },
@@ -47,6 +48,10 @@ const gallery = [
             touch to offer you the best possible experience. Discover our innovative approach to
             dentistry and experience the care you deserve.
           </p>
+          <!-- Doctor's name as a signature, in the same script as "oral care" -->
+          <p class="about__signature">
+            <span class="script">{{ clinic.doctor.name }}</span>
+          </p>
         </div>
       </div>
 
@@ -88,6 +93,12 @@ const gallery = [
 
 .about__copy p + p {
   margin-top: 18px;
+}
+
+.about__copy .about__signature {
+  margin-top: 28px;
+  font-size: clamp(30px, 3.4vw, 38px);
+  line-height: 1.2;
 }
 
 .about__gallery {

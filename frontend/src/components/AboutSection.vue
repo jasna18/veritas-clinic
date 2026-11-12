@@ -1,5 +1,6 @@
 <script setup>
 import { clinic } from '../data/content.js'
+import doctorPhoto from '../assets/images/doctor.jpg'
 
 const gallery = ['Treatment room', 'Reception', 'Patient lounge']
 </script>
@@ -15,8 +16,14 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
       </div>
 
       <div class="about__grid">
-        <figure class="about__portrait placeholder">
-          <span class="placeholder__label">Photo · {{ clinic.doctor.name }}, founder</span>
+        <figure class="about__portrait">
+          <img
+            :src="doctorPhoto"
+            :alt="`${clinic.doctor.name}, founder of Veritas Polyclinic`"
+            class="about__photo"
+            width="148"
+            height="148"
+          />
           <figcaption class="about__badge">
             <span class="about__name">{{ clinic.doctor.name }}</span>
             <span class="about__role">{{ clinic.doctor.title }}</span>
@@ -55,32 +62,45 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
   align-items: start;
 }
 
+/* Doctor card: round headshot with name underneath */
 .about__portrait {
   margin: 0;
-  aspect-ratio: 3 / 4;
-  background: linear-gradient(170deg, #e7e9e4 0%, #b4c0bc 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 48px 24px 40px;
+  background: linear-gradient(170deg, #eceee9 0%, #c9d2ce 100%);
+  text-align: center;
+}
+
+.about__photo {
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 6px var(--cream),
+    0 0 0 7px var(--gold);
 }
 
 .about__badge {
-  position: absolute;
-  left: 0;
-  bottom: 24px;
   display: flex;
   flex-direction: column;
-  padding: 10px 14px;
-  background: rgba(246, 239, 229, 0.95);
+  gap: 4px;
   line-height: 1.35;
 }
 
 .about__name {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 18px;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--slate);
 }
 
 .about__role {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
 }
 

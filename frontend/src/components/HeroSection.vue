@@ -276,14 +276,18 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
     display: none;
   }
 
-  .hero__ctas,
-  .hero__ctas .btn {
-    width: 100%;
-  }
-
   /* Narrow screens show fewer items, so move a bit faster to read as motion */
   .marquee__track {
     animation-duration: 16s;
+  }
+}
+
+/* Narrow phones & folded foldables: full-width buttons.
+   Wider screens (e.g. an unfolded Galaxy Fold) keep them side by side. */
+@media (max-width: 560px) {
+  .hero__ctas,
+  .hero__ctas .btn {
+    width: 100%;
   }
 }
 

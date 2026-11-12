@@ -135,7 +135,8 @@ function toggle(i) {
   }
 }
 
-@media (max-width: 700px) {
+/* One per row on phones; unfolded foldables (~690px) keep two per row */
+@media (max-width: 560px) {
   .treatments__grid {
     grid-template-columns: 1fr;
     gap: 16px;

@@ -51,6 +51,7 @@ import { clinic } from '../data/content.js'
 
 .map {
   position: relative;
+  width: 100%; /* stop min-height + aspect-ratio from widening it past the screen */
   aspect-ratio: 12 / 5;
   min-height: 360px;
   background-color: #e4e1d9;

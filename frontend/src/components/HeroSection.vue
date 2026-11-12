@@ -199,7 +199,12 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
 }
 
 @media (max-width: 900px) {
-  /* Phones & tablets: the reception photo is the hero background,
+  /* Tablets too: hero sized to its content, so no empty band under the photo */
+  .hero {
+    min-height: 0;
+  }
+
+  /* Phones & tablets: the reception photo is the full hero background,
      blended into the hero's slate green so the text stays readable */
   .hero__photo {
     inset: 0;

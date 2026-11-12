@@ -185,7 +185,7 @@ import { marqueeItems } from '../data/content.js'
 
   /* Narrow screens show fewer items, so move a bit faster to read as motion */
   .marquee__track {
-    animation-duration: 28s;
+    animation-duration: 16s;
   }
 }
 
@@ -195,6 +195,12 @@ import { marqueeItems } from '../data/content.js'
   .marquee .marquee__track {
     animation-duration: 70s !important;
     animation-iteration-count: infinite !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 700px) {
+  .marquee .marquee__track {
+    animation-duration: 18s !important;
   }
 }
 </style>

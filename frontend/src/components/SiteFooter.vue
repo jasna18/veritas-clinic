@@ -114,15 +114,34 @@ import { clinic, navLinks } from '../data/content.js'
   flex-wrap: wrap;
 }
 
+/* Visit, Pages and Contact side by side; Appointments on its own row below */
 @media (max-width: 900px) {
   .footer__cols {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px 20px;
+  }
+
+  .footer__cols > :last-child {
+    grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 480px) {
+  .footer {
+    font-size: 12px;
+  }
+
   .footer__cols {
-    grid-template-columns: 1fr;
+    gap: 28px 12px;
+  }
+
+  .footer__cols p,
+  .footer__cols li {
+    overflow-wrap: anywhere; /* long emails/addresses wrap inside the narrow column */
+  }
+
+  .footer__label {
+    letter-spacing: 0.12em;
   }
 }
 </style>

@@ -132,6 +132,12 @@ import { marqueeItems } from '../data/content.js'
   animation: marquee 40s linear infinite;
 }
 
+/* Hold a finger or the mouse on the strip to pause it */
+.marquee:hover .marquee__track,
+.marquee:active .marquee__track {
+  animation-play-state: paused;
+}
+
 .marquee__list {
   display: flex;
   margin: 0;
@@ -176,11 +182,19 @@ import { marqueeItems } from '../data/content.js'
   .hero__ctas .btn {
     width: 100%;
   }
+
+  /* Narrow screens show fewer items, so move a bit faster to read as motion */
+  .marquee__track {
+    animation-duration: 28s;
+  }
 }
 
+/* Phones with Reduce Motion / Remove animations (often turned on by battery saver)
+   still get a gentle, slower drift. These override the site-wide reduced-motion rule. */
 @media (prefers-reduced-motion: reduce) {
-  .marquee__track {
-    animation: none;
+  .marquee .marquee__track {
+    animation-duration: 70s !important;
+    animation-iteration-count: infinite !important;
   }
 }
 </style>

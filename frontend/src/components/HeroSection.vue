@@ -232,14 +232,23 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
     background: linear-gradient(
       180deg,
       rgba(74, 90, 86, 0.18) 0%,
-      rgba(74, 90, 86, 0.28) calc(var(--header-h) + 200px),
-      rgba(70, 85, 81, 0.82) calc(var(--header-h) + 340px),
+      rgba(74, 90, 86, 0.28) calc(var(--header-h) + 180px),
+      rgba(66, 80, 76, 0.86) calc(var(--header-h) + 285px),
       rgba(66, 80, 76, 0.92) 100%
     );
   }
 
   .hero__content {
     padding-top: calc(var(--header-h) + 300px); /* heading starts below the logo wall */
+  }
+
+  /* "Cosmetic & aesthetic dentistry" line: clear against the photo */
+  .hero__eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #fff;
+    text-shadow: 0 1px 8px rgba(30, 40, 37, 0.7);
   }
 
   .hero__bottom {

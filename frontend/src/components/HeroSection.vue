@@ -26,10 +26,6 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
         <span class="script">natural</span> smile
       </h1>
       <div class="hero__bottom">
-        <p class="hero__lede">
-          Veneers, whitening, bonding and aligners — planned around your face, your features and
-          your goals, in a calm, light-filled studio.
-        </p>
         <div class="hero__ctas">
           <a href="#book" class="btn btn--gold">
             Book a visit <span class="arrow" aria-hidden="true">→</span>
@@ -218,8 +214,15 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
   .hero__photo img {
     height: calc(var(--header-h) + 440px);
     object-position: 58% 50%;
-    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+    /* hero colour blends in on all four edges of the photo */
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 22%, #000 62%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 22%, #000 62%, transparent 100%);
+    mask-composite: intersect;
   }
 
   .hero__photo::after {

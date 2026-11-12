@@ -112,6 +112,11 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
     gap: 40px;
   }
 
+  /* On smaller screens the photo follows the welcome text */
+  .about__photo {
+    order: 1;
+  }
+
   .about__gallery {
     margin-top: 72px;
     grid-template-columns: 1fr 1fr;

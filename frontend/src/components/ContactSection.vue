@@ -193,7 +193,7 @@ function reset() {
 }
 
 .contact__list dt {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
@@ -232,7 +232,7 @@ function reset() {
 
 .field label {
   display: block;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;

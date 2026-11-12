@@ -1,11 +1,11 @@
 // Page content. Bracketed values are placeholders to be replaced with real clinic details.
 
-import implantImg from '../assets/images/treatment-implant.jpg'
-import periodontologyImg from '../assets/images/treatment-periodontology.jpg'
-import invisibleBracesImg from '../assets/images/treatment-invisible-braces.jpg'
-import rehabilitationImg from '../assets/images/treatment-rehabilitation.jpg'
-import aestheticImg from '../assets/images/treatment-aesthetic.jpg'
-import surgeryImg from '../assets/images/treatment-surgery.jpg'
+import implantImg from '../assets/images/treatment-implant.webp'
+import periodontologyImg from '../assets/images/treatment-periodontology.webp'
+import invisibleBracesImg from '../assets/images/treatment-invisible-braces.webp'
+import rehabilitationImg from '../assets/images/treatment-rehabilitation.webp'
+import aestheticImg from '../assets/images/treatment-aesthetic.webp'
+import surgeryImg from '../assets/images/treatment-surgery.webp'
 
 export const clinic = {
   name: 'Veritas Polyclinic',
@@ -28,7 +28,6 @@ export const navLinks = [
   { label: 'About us', href: '#about' },
   { label: 'Treatments', href: '#treatments' },
   { label: 'Our approach', href: '#approach' },
-  { label: 'Results', href: '#results' },
   { label: 'Contact', href: '#contact' },
   { label: 'Location', href: '#location' },
 ]
@@ -111,12 +110,6 @@ export const steps = [
     title: 'Aftercare',
     body: 'A review visit, hygiene plan and simple at-home guidance so your results stay bright.',
   },
-]
-
-export const results = [
-  { title: 'Teeth whitening', note: '[Whitening case photos]' },
-  { title: 'Porcelain veneers', note: '[Veneers case photos]' },
-  { title: 'Composite bonding', note: '[Bonding case photos]' },
 ]
 
 export const bookingSteps = [

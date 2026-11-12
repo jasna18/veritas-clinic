@@ -93,7 +93,7 @@ import { clinic } from '../data/content.js'
 }
 
 .map__label {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;

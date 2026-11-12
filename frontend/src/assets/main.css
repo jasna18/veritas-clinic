@@ -10,6 +10,7 @@
   --slate: #4a5a56;
   --slate-deep: #3f4d4a;
   --gold: #b47f14;
+  --gold-text: #8a5f08; /* readable gold for text on cream (4.7:1) */
   --gold-hover: #9c6d0f;
   --ink: #35403d;
   --muted: #5f6966;
@@ -26,7 +27,7 @@
   --max: 1200px;
   --header-h: 72px;
 
-  /* Section headings (About, Treatments, Approach, Results, Booking, FAQ, Contact, Location) */
+  /* Section headings (About, Treatments, Approach, Booking, FAQ, Contact, Location) */
   --heading-size: clamp(28px, 3.5vw, 40px);
 
   /* Motion */
@@ -115,7 +116,7 @@ p {
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 .eyebrow--muted {
@@ -147,10 +148,11 @@ p {
   font-family: var(--font-script);
   text-transform: none;
   letter-spacing: 0;
-  color: var(--gold);
+  color: var(--gold-text);
   font-size: 1.05em;
   line-height: 0.8;
   padding: 0 0.08em;
+  white-space: nowrap; /* keep phrases like "for you?" on one line */
 }
 
 /* Section header: eyebrow on the left, heading offset to the right */
@@ -278,7 +280,12 @@ p {
 
   .eyebrow,
   .placeholder__label {
-    font-size: 11px;
+    font-size: 12px;
+  }
+
+  /* The script face is very fine; give it a little more body on small screens */
+  .script {
+    -webkit-text-stroke: 0.5px currentColor;
   }
 
   .section {

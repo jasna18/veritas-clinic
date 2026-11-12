@@ -4,7 +4,6 @@ import HeroSection from './components/HeroSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import TreatmentsSection from './components/TreatmentsSection.vue'
 import ApproachSection from './components/ApproachSection.vue'
-import ResultsSection from './components/ResultsSection.vue'
 import BookingSection from './components/BookingSection.vue'
 import FaqSection from './components/FaqSection.vue'
 import ContactSection from './components/ContactSection.vue'
@@ -19,7 +18,6 @@ import SiteFooter from './components/SiteFooter.vue'
     <AboutSection />
     <TreatmentsSection />
     <ApproachSection />
-    <ResultsSection />
     <BookingSection />
     <FaqSection />
     <ContactSection />

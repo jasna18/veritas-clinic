@@ -64,7 +64,7 @@ import { clinic, navLinks } from '../data/content.js'
 
 .footer__label {
   margin-bottom: 14px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;

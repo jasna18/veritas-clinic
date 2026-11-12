@@ -37,6 +37,7 @@ function toggle(i) {
               width="600"
               height="400"
               loading="lazy"
+              decoding="async"
             />
             <span class="card__caption">
               <span class="card__title">{{ t.title }}</span>
@@ -138,6 +139,18 @@ function toggle(i) {
   .treatments__grid {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+}
+
+/* Touch screens have no hover: always show the treatment name */
+@media (hover: none) {
+  .card .card__caption {
+    transform: translateY(0);
+  }
+
+  .card .card__title {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

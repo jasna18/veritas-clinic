@@ -1,8 +1,8 @@
 <script setup>
-import doctorPhoto from '../assets/images/doctor-portrait.jpg'
-import treatmentRoom from '../assets/images/clinic-treatment-room.jpg'
-import reception from '../assets/images/clinic-reception.jpg'
-import lounge from '../assets/images/clinic-lounge.jpg'
+import doctorPhoto from '../assets/images/doctor-portrait.webp'
+import treatmentRoom from '../assets/images/clinic-treatment-room.webp'
+import reception from '../assets/images/clinic-reception.webp'
+import lounge from '../assets/images/clinic-lounge.webp'
 
 const gallery = [
   { src: treatmentRoom, alt: 'Treatment room with a sage-green dental chair and garden view' },
@@ -29,6 +29,8 @@ const gallery = [
             class="about__photo"
             width="471"
             height="468"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -49,7 +51,7 @@ const gallery = [
 
       <ul class="about__gallery" aria-label="Inside the clinic">
         <li v-for="room in gallery" :key="room.src" class="about__room">
-          <img :src="room.src" :alt="room.alt" width="1000" height="667" loading="lazy" />
+          <img :src="room.src" :alt="room.alt" width="800" height="534" loading="lazy" decoding="async" />
         </li>
       </ul>
     </div>

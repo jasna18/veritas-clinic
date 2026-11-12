@@ -46,7 +46,7 @@ import { bookingSteps } from '../data/content.js'
 }
 
 .booking__eyebrow {
-  color: rgba(246, 239, 229, 0.75);
+  color: rgba(246, 239, 229, 0.9);
   margin-bottom: 14px;
 }
 
@@ -71,7 +71,7 @@ import { bookingSteps } from '../data/content.js'
 .booking__num {
   font-size: 11px;
   letter-spacing: 0.08em;
-  color: rgba(246, 239, 229, 0.55);
+  color: rgba(246, 239, 229, 0.78);
 }
 
 .booking__step-title {
@@ -83,7 +83,7 @@ import { bookingSteps } from '../data/content.js'
 
 .booking__body {
   font-size: 13px;
-  color: rgba(246, 239, 229, 0.72);
+  color: rgba(246, 239, 229, 0.9);
   max-width: 32ch;
 }
 

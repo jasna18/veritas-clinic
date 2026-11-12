@@ -1,7 +1,14 @@
 <script setup>
 import doctorPhoto from '../assets/images/doctor-portrait.jpg'
+import treatmentRoom from '../assets/images/clinic-treatment-room.jpg'
+import reception from '../assets/images/clinic-reception.jpg'
+import lounge from '../assets/images/clinic-lounge.jpg'
 
-const gallery = ['Treatment room', 'Reception', 'Patient lounge']
+const gallery = [
+  { src: treatmentRoom, alt: 'Treatment room with a sage-green dental chair and garden view' },
+  { src: reception, alt: 'Reception desk with warm lighting and fresh flowers' },
+  { src: lounge, alt: 'Patient lounge with sofas and armchairs' },
+]
 </script>
 
 <template>
@@ -41,8 +48,8 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
       </div>
 
       <ul class="about__gallery" aria-label="Inside the clinic">
-        <li v-for="room in gallery" :key="room" class="placeholder about__room">
-          <span class="placeholder__label">Photo · {{ room }}</span>
+        <li v-for="room in gallery" :key="room.src" class="about__room">
+          <img :src="room.src" :alt="room.alt" width="1000" height="667" loading="lazy" />
         </li>
       </ul>
     </div>
@@ -86,7 +93,7 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
 
 .about__gallery {
   list-style: none;
-  margin: 120px 0 0;
+  margin: 64px 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -95,18 +102,14 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
 
 .about__room {
   aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--sand);
 }
 
-.about__room:nth-child(1) {
-  background: linear-gradient(150deg, #eef0ec, #c9d1c6);
-}
-
-.about__room:nth-child(2) {
-  background: linear-gradient(150deg, #f1ece3, #c8d3c4);
-}
-
-.about__room:nth-child(3) {
-  background: linear-gradient(150deg, #efe8de, #cbc5b3);
+.about__room img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 900px) {
@@ -122,7 +125,7 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
   }
 
   .about__gallery {
-    margin-top: 72px;
+    margin-top: 48px;
     grid-template-columns: 1fr 1fr;
   }
 

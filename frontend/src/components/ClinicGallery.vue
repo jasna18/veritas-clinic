@@ -12,8 +12,6 @@ const revealed = ref(false) // fans out the first time the gallery scrolls into 
 
 let timer = null
 let observer = null
-const reduceMotion =
-  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 // Where each photo sits relative to the one in front
 function slot(i) {
@@ -23,7 +21,7 @@ function slot(i) {
 }
 
 function startAuto() {
-  if (reduceMotion || timer) return
+  if (timer) return
   timer = setInterval(() => {
     front.value = (front.value + 1) % props.images.length
   }, props.interval)
@@ -42,7 +40,7 @@ function show(i) {
 }
 
 function onHover() {
-  if (!reduceMotion) show((front.value + 1) % props.images.length)
+  show((front.value + 1) % props.images.length)
 }
 
 onMounted(() => {
@@ -171,6 +169,14 @@ onBeforeUnmount(() => {
 
 .fan__card:focus-visible {
   outline-offset: 4px;
+}
+
+/* Phones with Reduce Motion / Remove animations (often turned on by battery saver)
+   still get the smooth card movement; overrides the site-wide reduced-motion rule. */
+@media (prefers-reduced-motion: reduce) {
+  .fan .fan__card {
+    transition-duration: 900ms, 900ms, 700ms !important;
+  }
 }
 
 @media (max-width: 700px) {

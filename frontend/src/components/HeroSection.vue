@@ -1,10 +1,22 @@
 <script setup>
 import { marqueeItems } from '../data/content.js'
+import receptionPhoto from '../assets/images/hero-reception.webp'
 </script>
 
 <template>
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__bg" aria-hidden="true"></div>
+    <!-- Reception photo: right half on desktop, top band on phones -->
+    <div class="hero__photo">
+      <img
+        :src="receptionPhoto"
+        alt="Veritas Polyclinic reception with the Veritas logo on a green feature wall"
+        width="1144"
+        height="607"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
     <!-- <span class="hero__tag" aria-hidden="true">Hero photo · close-up natural smile, warm light</span> -->
 
     <div class="container hero__content">
@@ -59,6 +71,23 @@ import { marqueeItems } from '../data/content.js'
     linear-gradient(180deg, #6d7c78 0%, #56645f 55%, #4a5752 100%);
 }
 
+.hero__photo {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  width: 58%;
+  /* fade the photo into the green panel on the text side */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 34%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 34%);
+}
+
+.hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 45% 50%;
+}
+
 .hero__tag {
   position: absolute;
   top: calc(var(--header-h) + 8px);
@@ -85,7 +114,8 @@ import { marqueeItems } from '../data/content.js'
 }
 
 .hero__title {
-  font-size: clamp(48px, 7.4vw, 88px);
+  max-width: 600px;
+  font-size: clamp(44px, 5.6vw, 76px);
   line-height: 1;
   letter-spacing: 0.03em;
   color: var(--cream);
@@ -97,16 +127,16 @@ import { marqueeItems } from '../data/content.js'
 }
 
 .hero__bottom {
-  margin-top: 40px;
+  margin-top: 32px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 32px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  max-width: 480px;
 }
 
 .hero__lede {
-  max-width: 340px;
+  max-width: 420px;
   font-size: 15px;
   color: rgba(246, 239, 229, 0.88);
 }
@@ -121,6 +151,9 @@ import { marqueeItems } from '../data/content.js'
 .marquee {
   position: relative;
   min-width: 0;
+  background: rgba(58, 71, 68, 0.88); /* keeps the strip readable over the photo */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-top: 1px solid var(--line-light);
   overflow: hidden;
   padding: 12px 0;
@@ -169,6 +202,24 @@ import { marqueeItems } from '../data/content.js'
   }
 }
 
+@media (max-width: 900px) {
+  .hero__photo {
+    inset: 0 0 auto;
+    width: 100%;
+    height: calc(var(--header-h) + 260px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
+
+  .hero__photo img {
+    object-position: 50% 45%;
+  }
+
+  .hero__bottom {
+    max-width: none;
+  }
+}
+
 @media (max-width: 700px) {
   /* Size to content on phones so there's no empty band above the heading */
   .hero {
@@ -176,7 +227,7 @@ import { marqueeItems } from '../data/content.js'
   }
 
   .hero__content {
-    padding-top: calc(var(--header-h) + 48px);
+    padding-top: calc(var(--header-h) + 230px); /* text starts where the photo fades */
     padding-bottom: 36px;
   }
 

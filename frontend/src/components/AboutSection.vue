@@ -1,5 +1,5 @@
 <script setup>
-import doctorPhoto from '../assets/images/doctor.jpg'
+import doctorPhoto from '../assets/images/doctor-portrait.jpg'
 
 const gallery = ['Treatment room', 'Reception', 'Patient lounge']
 </script>
@@ -20,8 +20,8 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
             :src="doctorPhoto"
             alt="Founder of Veritas Polyclinic"
             class="about__photo"
-            width="148"
-            height="148"
+            width="471"
+            height="468"
           />
         </div>
 
@@ -57,25 +57,18 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
   align-items: start;
 }
 
-/* Soft card holding the doctor's photo */
 .about__portrait {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 56px 24px;
-  background: linear-gradient(170deg, #eceee9 0%, #c9d2ce 100%);
+  /* Warm sand card; the photo's white backdrop blends into it */
+  background: #ece3d6;
+  overflow: hidden;
 }
 
-/* Round doctor headshot */
 .about__photo {
-  margin: 7px; /* room for the gold ring */
-  width: 148px;
-  height: 148px;
-  border-radius: 50%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 471 / 468;
   object-fit: cover;
-  box-shadow:
-    0 0 0 6px var(--cream),
-    0 0 0 7px var(--gold);
+  mix-blend-mode: multiply;
 }
 
 .about__copy {
@@ -125,6 +118,7 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
   /* On smaller screens the photo follows the welcome text */
   .about__portrait {
     order: 1;
+    max-width: 420px; /* keep the photo sharp on tablets */
   }
 
   .about__gallery {

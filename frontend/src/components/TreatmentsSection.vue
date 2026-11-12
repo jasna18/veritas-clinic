@@ -46,7 +46,7 @@ const pad = (n) => String(n).padStart(2, '0')
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 56px 20px;
 }
 
@@ -55,8 +55,7 @@ const pad = (n) => String(n).padStart(2, '0')
   margin-bottom: 14px;
 }
 
-.card:nth-child(4n + 2) .card__media,
-.card:nth-child(4n + 3) .card__media {
+.card:nth-child(even) .card__media {
   background: linear-gradient(160deg, #e4dbcf 0%, #cdbcaa 100%);
 }
 
@@ -115,6 +114,12 @@ const pad = (n) => String(n).padStart(2, '0')
 
 .card__link:hover {
   color: var(--gold);
+}
+
+@media (max-width: 1000px) {
+  .treatments__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 700px) {

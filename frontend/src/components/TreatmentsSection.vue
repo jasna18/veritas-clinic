@@ -1,7 +1,13 @@
 <script setup>
+import { ref } from 'vue'
 import { treatments } from '../data/content.js'
 
-const pad = (n) => String(n).padStart(2, '0')
+// Card whose title is shown after a click/tap (touch screens have no hover)
+const active = ref(null)
+
+function toggle(i) {
+  active.value = active.value === i ? null : i
+}
 </script>
 
 <template>
@@ -15,8 +21,13 @@ const pad = (n) => String(n).padStart(2, '0')
       </div>
 
       <ul class="treatments__grid">
-        <li v-for="(t, i) in treatments" :key="t.title" class="card">
-          <div class="card__media placeholder">
+        <li v-for="(t, i) in treatments" :key="t.title">
+          <button
+            type="button"
+            class="card placeholder"
+            :class="{ 'is-active': active === i }"
+            @click="toggle(i)"
+          >
             <img
               v-if="t.image"
               :src="t.image"
@@ -27,19 +38,10 @@ const pad = (n) => String(n).padStart(2, '0')
               height="400"
               loading="lazy"
             />
-            <span v-else class="placeholder__label">Photo · {{ t.photo }}</span>
-          </div>
-          <div class="card__head">
-            <h3 class="card__title">{{ t.title }}</h3>
-            <span class="card__num">No.{{ pad(i + 1) }}</span>
-          </div>
-          <p class="card__body">{{ t.description }}</p>
-          <div class="card__foot">
-            <span class="card__meta">From {{ t.price }} · {{ t.visits }}</span>
-            <a href="#book" class="card__link" :aria-label="`Book ${t.title}`">
-              Book <span aria-hidden="true">→</span>
-            </a>
-          </div>
+            <span class="card__caption">
+              <span class="card__title">{{ t.title }}</span>
+            </span>
+          </button>
         </li>
       </ul>
     </div>
@@ -57,79 +59,73 @@ const pad = (n) => String(n).padStart(2, '0')
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 56px 20px;
+  gap: 20px;
 }
 
-.card__media {
+/* Photo tile; the whole tile is the click/tap target */
+.card {
+  display: block;
+  width: 100%;
   aspect-ratio: 4 / 3;
-  margin-bottom: 14px;
-}
-
-.card:nth-child(even) .card__media {
-  background: linear-gradient(160deg, #e4dbcf 0%, #cdbcaa 100%);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  text-align: left;
 }
 
 .card__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 600ms var(--ease);
 }
 
-.card__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
+/* Title panel that slides up from the bottom edge */
+.card__caption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 48px 20px 18px;
+  background: linear-gradient(180deg, rgba(63, 77, 74, 0) 0%, rgba(63, 77, 74, 0.88) 100%);
+  transform: translateY(100%);
+  transition: transform 320ms var(--ease);
 }
 
 .card__title {
-  font-size: 20px;
-  color: var(--slate);
-}
-
-.card__num {
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-}
-
-.card__body {
-  margin-top: 12px;
-  font-size: 14px;
-  line-height: 1.65;
-  max-width: 52ch;
-}
-
-.card__foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  margin-top: 14px;
-}
-
-.card__meta {
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.card__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--slate);
-  transition: color var(--dur) var(--ease);
+  line-height: 1.2;
+  color: var(--cream);
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 320ms var(--ease) 60ms,
+    transform 320ms var(--ease) 60ms;
 }
 
-.card__link:hover {
-  color: var(--gold);
+.card:hover .card__caption,
+.card:focus-visible .card__caption,
+.card.is-active .card__caption {
+  transform: translateY(0);
+}
+
+.card:hover .card__title,
+.card:focus-visible .card__title,
+.card.is-active .card__title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover .card__img,
+.card.is-active .card__img {
+  transform: scale(1.04);
+}
+
+.card:focus-visible {
+  outline-offset: 4px;
 }
 
 @media (max-width: 1000px) {
@@ -141,7 +137,28 @@ const pad = (n) => String(n).padStart(2, '0')
 @media (max-width: 700px) {
   .treatments__grid {
     grid-template-columns: 1fr;
-    gap: 44px;
+    gap: 16px;
+  }
+}
+
+/* Without motion: title simply fades in, no slide or zoom */
+@media (prefers-reduced-motion: reduce) {
+  .card__caption,
+  .card__title,
+  .card:hover .card__img,
+  .card.is-active .card__img {
+    transform: none;
+  }
+
+  .card__caption {
+    opacity: 0;
+    transition: opacity 150ms linear;
+  }
+
+  .card:hover .card__caption,
+  .card:focus-visible .card__caption,
+  .card.is-active .card__caption {
+    opacity: 1;
   }
 }
 </style>

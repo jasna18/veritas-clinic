@@ -10,6 +10,13 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
+  // Listen on the local network so the site can be opened from a phone on the same Wi-Fi
+  server: {
+    host: true,
+  },
+  preview: {
+    host: true,
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

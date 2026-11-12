@@ -1,11 +1,29 @@
-<script setup></script>
+<script setup>
+import SiteHeader from './components/SiteHeader.vue'
+import HeroSection from './components/HeroSection.vue'
+import AboutSection from './components/AboutSection.vue'
+import TreatmentsSection from './components/TreatmentsSection.vue'
+import ApproachSection from './components/ApproachSection.vue'
+import ResultsSection from './components/ResultsSection.vue'
+import BookingSection from './components/BookingSection.vue'
+import FaqSection from './components/FaqSection.vue'
+import ContactSection from './components/ContactSection.vue'
+import LocationSection from './components/LocationSection.vue'
+import SiteFooter from './components/SiteFooter.vue'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <SiteHeader />
+  <main id="top">
+    <HeroSection />
+    <AboutSection />
+    <TreatmentsSection />
+    <ApproachSection />
+    <ResultsSection />
+    <BookingSection />
+    <FaqSection />
+    <ContactSection />
+    <LocationSection />
+  </main>
+  <SiteFooter />
 </template>
-
-<style scoped></style>

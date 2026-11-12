@@ -1,0 +1,300 @@
+:root {
+  /* The design is light-only; stop phone browsers from auto-darkening it */
+  color-scheme: only light;
+
+  /* Palette */
+  --cream: #f6efe5;
+  --cream-soft: #faf6f0;
+  --sand: #e3d9cc;
+  --sand-deep: #c4b2a0;
+  --slate: #4a5a56;
+  --slate-deep: #3f4d4a;
+  --gold: #b47f14;
+  --gold-hover: #9c6d0f;
+  --ink: #35403d;
+  --muted: #5f6966;
+  --line: rgba(74, 90, 86, 0.16);
+  --line-light: rgba(246, 239, 229, 0.18);
+
+  /* Type */
+  --font-display: 'Marcellus', 'Times New Roman', serif;
+  --font-script: 'Pinyon Script', cursive;
+  --font-body: 'Lato', system-ui, sans-serif;
+
+  /* Layout */
+  --gutter: 40px;
+  --max: 1200px;
+  --header-h: 72px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 200ms;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+}
+
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--max) + var(--gutter) * 2);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section {
+  padding: 120px 0;
+}
+
+/* Eyebrow labels like "(02) TREATMENTS" */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eyebrow--muted {
+  color: var(--muted);
+}
+
+/* Big display heading with an inline script accent */
+.display {
+  font-size: clamp(40px, 5.6vw, 64px);
+  color: var(--slate);
+}
+
+.script {
+  font-family: var(--font-script);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--gold);
+  font-size: 1.05em;
+  line-height: 0.8;
+  padding: 0 0.08em;
+}
+
+/* Section header: eyebrow on the left, heading offset to the right */
+.section-head {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+.section-head .eyebrow {
+  padding-bottom: 14px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 44px;
+  padding: 14px 22px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+  white-space: nowrap;
+}
+
+.btn--gold {
+  background: var(--gold);
+  color: #fff;
+}
+
+.btn--gold:hover {
+  background: var(--gold-hover);
+}
+
+.btn--slate {
+  background: var(--slate);
+  color: var(--cream);
+}
+
+.btn--slate:hover {
+  background: var(--slate-deep);
+}
+
+.btn--ghost-light {
+  border-color: rgba(246, 239, 229, 0.45);
+  color: var(--cream);
+  font-weight: 400;
+}
+
+.btn--ghost-light:hover {
+  border-color: var(--cream);
+  background: rgba(246, 239, 229, 0.08);
+}
+
+.btn--ghost {
+  border-color: var(--line);
+  color: var(--slate);
+  background: var(--cream-soft);
+}
+
+.btn--ghost:hover {
+  border-color: var(--slate);
+}
+
+.btn .arrow {
+  font-weight: 400;
+  transition: transform var(--dur) var(--ease);
+}
+
+.btn:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* Image placeholder with caption, used until real photos are supplied */
+.placeholder {
+  position: relative;
+  background: linear-gradient(160deg, #e6ddd2 0%, #c9b8a6 100%);
+  overflow: hidden;
+}
+
+.placeholder__label {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(53, 64, 61, 0.75);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --gutter: 24px;
+  }
+
+  /* Lato Light renders too faint on phone screens */
+  body {
+    font-weight: 400;
+  }
+
+  .eyebrow,
+  .placeholder__label {
+    font-size: 11px;
+  }
+
+  .section {
+    padding: 88px 0;
+  }
+
+  .section-head {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .section-head .eyebrow {
+    padding-bottom: 0;
+    order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --gutter: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

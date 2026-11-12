@@ -1,5 +1,4 @@
 <script setup>
-import { clinic } from '../data/content.js'
 import doctorPhoto from '../assets/images/doctor.jpg'
 
 const gallery = ['Treatment room', 'Reception', 'Patient lounge']
@@ -16,19 +15,13 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
       </div>
 
       <div class="about__grid">
-        <figure class="about__portrait">
-          <img
-            :src="doctorPhoto"
-            :alt="`${clinic.doctor.name}, founder of Veritas Polyclinic`"
-            class="about__photo"
-            width="148"
-            height="148"
-          />
-          <figcaption class="about__badge">
-            <span class="about__name">{{ clinic.doctor.name }}</span>
-            <span class="about__role">{{ clinic.doctor.title }}</span>
-          </figcaption>
-        </figure>
+        <img
+          :src="doctorPhoto"
+          alt="Founder of Veritas Polyclinic"
+          class="about__photo"
+          width="148"
+          height="148"
+        />
 
         <div class="about__copy">
           <p>
@@ -57,24 +50,15 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
 <style scoped>
 .about__grid {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 11fr);
-  gap: 56px;
+  /* Match .section-head columns so the text lines up under the heading */
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 24px;
   align-items: start;
 }
 
-/* Doctor card: round headshot with name underneath */
-.about__portrait {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 48px 24px 40px;
-  background: linear-gradient(170deg, #eceee9 0%, #c9d2ce 100%);
-  text-align: center;
-}
-
+/* Round doctor headshot */
 .about__photo {
+  margin: 7px; /* room for the gold ring */
   width: 148px;
   height: 148px;
   border-radius: 50%;
@@ -82,26 +66,6 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
   box-shadow:
     0 0 0 6px var(--cream),
     0 0 0 7px var(--gold);
-}
-
-.about__badge {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  line-height: 1.35;
-}
-
-.about__name {
-  font-family: var(--font-display);
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--slate);
-}
-
-.about__role {
-  font-size: 12px;
-  color: var(--muted);
 }
 
 .about__copy {
@@ -146,10 +110,6 @@ const gallery = ['Treatment room', 'Reception', 'Patient lounge']
   .about__grid {
     grid-template-columns: 1fr;
     gap: 40px;
-  }
-
-  .about__portrait {
-    max-width: 360px;
   }
 
   .about__gallery {

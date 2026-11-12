@@ -203,16 +203,40 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
 }
 
 @media (max-width: 900px) {
+  /* Phones & tablets: the reception photo is the hero background,
+     blended into the hero's slate green so the text stays readable */
   .hero__photo {
-    inset: 0 0 auto;
+    inset: 0;
     width: 100%;
-    height: calc(var(--header-h) + 260px);
-    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    height: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
+  /* Photo fills the top of the hero (logo wall above the heading),
+     then melts into the slate green behind the text */
   .hero__photo img {
-    object-position: 50% 45%;
+    height: calc(var(--header-h) + 440px);
+    object-position: 58% 50%;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  }
+
+  .hero__photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(74, 90, 86, 0.18) 0%,
+      rgba(74, 90, 86, 0.28) calc(var(--header-h) + 200px),
+      rgba(70, 85, 81, 0.82) calc(var(--header-h) + 340px),
+      rgba(66, 80, 76, 0.92) 100%
+    );
+  }
+
+  .hero__content {
+    padding-top: calc(var(--header-h) + 300px); /* heading starts below the logo wall */
   }
 
   .hero__bottom {
@@ -227,7 +251,7 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
   }
 
   .hero__content {
-    padding-top: calc(var(--header-h) + 230px); /* text starts where the photo fades */
+    padding-top: calc(var(--header-h) + 300px); /* heading starts below the logo wall */
     padding-bottom: 36px;
   }
 

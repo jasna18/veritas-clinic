@@ -3,6 +3,7 @@ import doctorPhoto from '../assets/images/doctor-portrait.webp'
 import treatmentRoom from '../assets/images/clinic-treatment-room.webp'
 import reception from '../assets/images/clinic-reception.webp'
 import lounge from '../assets/images/clinic-lounge.webp'
+import ClinicGallery from './ClinicGallery.vue'
 
 const gallery = [
   { src: treatmentRoom, alt: 'Treatment room with a sage-green dental chair and garden view' },
@@ -49,11 +50,7 @@ const gallery = [
         </div>
       </div>
 
-      <ul class="about__gallery" aria-label="Inside the clinic">
-        <li v-for="room in gallery" :key="room.src" class="about__room">
-          <img :src="room.src" :alt="room.alt" width="800" height="534" loading="lazy" decoding="async" />
-        </li>
-      </ul>
+      <ClinicGallery :images="gallery" class="about__gallery" />
     </div>
   </section>
 </template>
@@ -94,24 +91,7 @@ const gallery = [
 }
 
 .about__gallery {
-  list-style: none;
-  margin: 64px 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.about__room {
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-  background: var(--sand);
-}
-
-.about__room img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  margin-top: 72px;
 }
 
 @media (max-width: 900px) {
@@ -128,11 +108,6 @@ const gallery = [
 
   .about__gallery {
     margin-top: 48px;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .about__room:first-child {
-    grid-column: 1 / -1;
   }
 }
 </style>

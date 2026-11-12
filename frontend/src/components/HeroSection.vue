@@ -5,7 +5,7 @@ import { marqueeItems } from '../data/content.js'
 <template>
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__bg" aria-hidden="true"></div>
-    <span class="hero__tag" aria-hidden="true">Hero photo · close-up natural smile, warm light</span>
+    <!-- <span class="hero__tag" aria-hidden="true">Hero photo · close-up natural smile, warm light</span> -->
 
     <div class="container hero__content">
       <p class="hero__eyebrow">Cosmetic &amp; aesthetic dentistry · Dubai</p>

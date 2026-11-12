@@ -62,7 +62,7 @@ function toggle(i) {
 
 .faq__title {
   margin-top: 14px;
-  font-size: clamp(40px, 5vw, 52px);
+  font-size: clamp(40px, 5.6vw, 64px); /* same as .display */
   line-height: 0.95;
   color: var(--slate);
 }

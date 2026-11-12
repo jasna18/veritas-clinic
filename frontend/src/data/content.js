@@ -1,5 +1,12 @@
 // Page content. Bracketed values are placeholders to be replaced with real clinic details.
 
+import implantImg from '../assets/images/treatment-implant.jpg'
+import periodontologyImg from '../assets/images/treatment-periodontology.jpg'
+import invisibleBracesImg from '../assets/images/treatment-invisible-braces.jpg'
+import rehabilitationImg from '../assets/images/treatment-rehabilitation.jpg'
+import aestheticImg from '../assets/images/treatment-aesthetic.jpg'
+import surgeryImg from '../assets/images/treatment-surgery.jpg'
+
 export const clinic = {
   name: 'Veritas Polyclinic',
   phone: '[PHONE NUMBER]',
@@ -41,36 +48,49 @@ export const treatments = [
     description:
       'A permanent, natural-looking replacement for missing teeth, matched to the shade of your smile.',
     photo: 'Implant procedure',
+    image: implantImg,
+    imageAlt: 'Modern dental treatment room with a patient chair and equipment',
   },
   {
     title: 'Periodontology',
     description:
       'Diagnosis and treatment of gum disease to keep your gums healthy and your teeth firmly supported.',
     photo: 'Gum care',
+    image: periodontologyImg,
+    imageAlt: 'Dentist examining a patient’s gums, with a gum and bone diagram on screen',
   },
   {
     title: 'Invisible braces',
     description:
       'Near-invisible, removable aligners that gradually straighten teeth around work and daily life.',
     photo: 'Clear aligner',
+    image: invisibleBracesImg,
+    imageAlt: 'Close-up of a clear aligner being fitted over front teeth',
   },
   {
     title: 'Rehabilitation',
     description:
       'Full-mouth restoration with crowns, bridges and dentures to bring back comfortable chewing and a confident smile.',
     photo: 'Restoration',
+    image: rehabilitationImg,
+    imageAlt: 'Dentist in surgical gown treating a patient, with a dental X-ray on screen',
   },
   {
     title: 'Aesthetic dentistry',
     description:
       'Whitening, veneers and bonding, planned around your face for a natural-looking result.',
     photo: 'Smile close-up',
+    image: aestheticImg,
+    imageAlt: 'Smiling patient during a dental check-up',
   },
   {
     title: 'Surgery',
     description:
       'Wisdom-tooth removal, extractions and minor oral surgery, carried out gently under local anaesthetic.',
     photo: 'Surgery suite',
+    image: surgeryImg,
+    imageAlt: 'Dental surgeon and assistant in sterile gowns treating a patient',
+    imagePosition: 'center 25%',
   },
 ].map((t) => ({ ...t, price: '[PRICE]', visits: '[NO. OF VISITS]' }))
 

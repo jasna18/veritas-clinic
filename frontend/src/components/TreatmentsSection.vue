@@ -17,7 +17,17 @@ const pad = (n) => String(n).padStart(2, '0')
       <ul class="treatments__grid">
         <li v-for="(t, i) in treatments" :key="t.title" class="card">
           <div class="card__media placeholder">
-            <span class="placeholder__label">Photo · {{ t.photo }}</span>
+            <img
+              v-if="t.image"
+              :src="t.image"
+              :alt="t.imageAlt"
+              class="card__img"
+              :style="t.imagePosition ? { objectPosition: t.imagePosition } : null"
+              width="600"
+              height="400"
+              loading="lazy"
+            />
+            <span v-else class="placeholder__label">Photo · {{ t.photo }}</span>
           </div>
           <div class="card__head">
             <h3 class="card__title">{{ t.title }}</h3>
@@ -57,6 +67,12 @@ const pad = (n) => String(n).padStart(2, '0')
 
 .card:nth-child(even) .card__media {
   background: linear-gradient(160deg, #e4dbcf 0%, #cdbcaa 100%);
+}
+
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card__head {

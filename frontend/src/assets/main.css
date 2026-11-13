@@ -45,6 +45,7 @@
   --font-display: 'Marcellus', 'Times New Roman', serif;
   --font-script: 'Pinyon Script', cursive;
   --font-body: 'Lato', system-ui, sans-serif;
+  --font-body-latin: 'Lato', system-ui, sans-serif; /* stays Latin even in Arabic mode */
 
   /* Layout */
   --gutter: 40px;
@@ -261,6 +262,48 @@ p {
 
 .btn:hover .arrow {
   transform: translateX(3px);
+}
+
+/* ---------- Arabic (right-to-left) ---------- */
+
+/* Arabic fonts (loaded on first switch to Arabic, see src/i18n/index.js) */
+:root[lang='ar'] {
+  --font-display: 'El Messiri', 'Marcellus', serif;
+  --font-script: 'Aref Ruqaa', 'El Messiri', serif;
+  --font-body: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Letter-spacing breaks joined Arabic letters; uppercase has no meaning in Arabic */
+:root[lang='ar'] body *:not(svg):not(svg *) {
+  letter-spacing: 0 !important;
+}
+
+/* Arabic reads more comfortably a touch larger and with more line height */
+:root[lang='ar'] body {
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+:root[lang='ar'] .script {
+  font-size: 0.95em;
+  line-height: 1.2;
+  -webkit-text-stroke: 0;
+}
+
+:root[lang='ar'] h1,
+:root[lang='ar'] h2,
+:root[lang='ar'] h3 {
+  line-height: 1.35;
+}
+
+/* Arrows point the reading direction */
+[dir='rtl'] .arrow {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
+[dir='rtl'] .btn:hover .arrow {
+  transform: scaleX(-1) translateX(3px);
 }
 
 /* Image placeholder with caption, used until real photos are supplied */

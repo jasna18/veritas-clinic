@@ -1,5 +1,8 @@
 <script setup>
 import { clinic } from '../data/content.js'
+import { useI18n } from '../i18n'
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -7,24 +10,25 @@ import { clinic } from '../data/content.js'
     <div class="container">
       <div class="location__head">
         <div>
-          <p class="eyebrow eyebrow--line">Location</p>
+          <p class="eyebrow eyebrow--line">{{ t.location.eyebrow }}</p>
           <h2 id="location-title" class="display location__title">
-            Find the <span class="script">studio</span>
+            {{ t.location.title.before }} <span class="script">{{ t.location.title.script }}</span>
+            {{ t.location.title.after }}
           </h2>
         </div>
         <a :href="clinic.directionsUrl" target="_blank" rel="noopener" class="btn btn--ghost">
-          Get directions <span aria-hidden="true">↗</span>
+          {{ t.location.directions }} <span aria-hidden="true">↗</span>
         </a>
       </div>
 
       <div class="map">
         <!-- Replace with the clinic's Google Maps embed iframe -->
-        <span class="map__tag" aria-hidden="true">Google map embed</span>
+        <span class="map__tag" aria-hidden="true">{{ t.location.mapTag }}</span>
         <span class="map__pin" aria-hidden="true"></span>
         <div class="map__card">
-          <p class="map__label">Address</p>
-          <p class="map__address">{{ clinic.address }}</p>
-          <p class="map__parking">Parking: {{ clinic.parking }}</p>
+          <p class="map__label">{{ t.location.address }}</p>
+          <p class="map__address">{{ t.clinic.address }}</p>
+          <p class="map__parking">{{ t.location.parking }} {{ t.clinic.parking }}</p>
         </div>
       </div>
     </div>
@@ -64,7 +68,7 @@ import { clinic } from '../data/content.js'
 .map__tag {
   position: absolute;
   top: 14px;
-  right: 14px;
+  inset-inline-end: 14px;
   padding: 3px 9px;
   border: 1px solid rgba(74, 47, 35, 0.25);
   font-size: 10px;
@@ -86,7 +90,7 @@ import { clinic } from '../data/content.js'
 
 .map__card {
   position: absolute;
-  left: 26px;
+  inset-inline-start: 26px;
   bottom: 26px;
   width: min(330px, calc(100% - 52px));
   padding: 18px 20px;
@@ -123,7 +127,7 @@ import { clinic } from '../data/content.js'
   }
 
   .map__card {
-    left: 16px;
+    inset-inline-start: 16px;
     bottom: 16px;
     width: calc(100% - 32px);
   }

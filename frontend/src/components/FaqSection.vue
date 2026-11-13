@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-import { faqs } from '../data/content.js'
+import { useI18n } from '../i18n'
+
+const { t } = useI18n()
 
 const open = ref(new Set([3, 4]))
 
@@ -15,14 +17,15 @@ function toggle(i) {
   <section id="faq" class="section faq" aria-labelledby="faq-title">
     <div class="container faq__grid">
       <div>
-        <p class="eyebrow eyebrow--line">Questions</p>
+        <p class="eyebrow eyebrow--line">{{ t.faq.eyebrow }}</p>
         <h2 id="faq-title" class="faq__title">
-          Good<br />to <span class="script">know</span>
+          {{ t.faq.titleLine1 }}<br />{{ t.faq.title.before }}
+          <span class="script">{{ t.faq.title.script }}</span>
         </h2>
       </div>
 
       <ul class="faq__list">
-        <li v-for="(f, i) in faqs" :key="f.q" class="faq__item">
+        <li v-for="(f, i) in t.faq.items" :key="i" class="faq__item">
           <h3>
             <button
               :id="`faq-q-${i}`"
@@ -95,7 +98,7 @@ function toggle(i) {
   min-height: 60px;
   border: 0;
   background: none;
-  text-align: left;
+  text-align: start;
   font-size: 19px;
   line-height: 1.4;
   color: var(--slate);

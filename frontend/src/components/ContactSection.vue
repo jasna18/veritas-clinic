@@ -1,25 +1,26 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { clinic } from '../data/content.js'
+import { useI18n } from '../i18n'
+
+const { t, fmt } = useI18n()
 
 const form = reactive({
   name: '',
   mobile: '',
-  time: 'Morning',
+  time: 'morning', // key into t.contact.times
   message: '',
   consent: false,
 })
 
-const errors = reactive({ name: '', mobile: '', consent: '' })
+const errors = reactive({ name: false, mobile: false, consent: false })
 const submitted = ref(false)
 
+// Each returns true when the field is invalid; message text comes from the active language
 const validators = {
-  name: () => (form.name.trim().length >= 2 ? '' : 'Enter your full name so we know who to ask for.'),
-  mobile: () =>
-    /^\+?[\d\s()-]{8,}$/.test(form.mobile.trim())
-      ? ''
-      : 'Enter a mobile number with at least 8 digits, e.g. +971 50 123 4567.',
-  consent: () => (form.consent ? '' : 'Tick the box so we can contact you.'),
+  name: () => form.name.trim().length < 2,
+  mobile: () => !/^\+?[\d\s()-]{8,}$/.test(form.mobile.trim()),
+  consent: () => !form.consent,
 }
 
 function validate(field) {
@@ -27,7 +28,7 @@ function validate(field) {
 }
 
 function clearError(field) {
-  if (errors[field]) errors[field] = ''
+  if (errors[field]) errors[field] = false
 }
 
 function submit() {
@@ -42,7 +43,7 @@ function submit() {
 }
 
 function reset() {
-  Object.assign(form, { name: '', mobile: '', time: 'Morning', message: '', consent: false })
+  Object.assign(form, { name: '', mobile: '', time: 'morning', message: '', consent: false })
   submitted.value = false
 }
 </script>
@@ -51,90 +52,94 @@ function reset() {
   <section id="contact" class="section contact" aria-labelledby="contact-title">
     <div class="container contact__grid">
       <div>
-        <p class="eyebrow eyebrow--line">Contact</p>
+        <p class="eyebrow eyebrow--line">{{ t.contact.eyebrow }}</p>
         <h2 id="contact-title" class="display contact__title">
-          Let's <span class="script">talk</span>
+          {{ t.contact.title.before }} <span class="script">{{ t.contact.title.script }}</span>
+          {{ t.contact.title.after }}
         </h2>
 
         <dl class="contact__list">
           <div>
-            <dt>Phone</dt>
-            <dd><a :href="clinic.phoneHref">{{ clinic.phone }}</a></dd>
+            <dt>{{ t.contact.phone }}</dt>
+            <dd><a :href="clinic.phoneHref" dir="ltr">{{ clinic.phone }}</a></dd>
           </div>
           <div>
-            <dt>Email</dt>
-            <dd>{{ clinic.email }}</dd>
+            <dt>{{ t.contact.email }}</dt>
+            <dd dir="ltr">{{ clinic.email }}</dd>
           </div>
           <div>
-            <dt>Hours</dt>
-            <dd>{{ clinic.hours }}</dd>
+            <dt>{{ t.contact.hours }}</dt>
+            <dd>{{ t.clinic.hours }}</dd>
           </div>
         </dl>
 
         <a :href="clinic.phoneHref" class="btn btn--slate">
-          Call the clinic <span class="arrow" aria-hidden="true">→</span>
+          {{ t.contact.callClinic }} <span class="arrow" aria-hidden="true">→</span>
         </a>
       </div>
 
       <div class="callback">
-        <p class="callback__title">Request a call back</p>
+        <p class="callback__title">{{ t.contact.callbackTitle }}</p>
 
         <div v-if="submitted" class="callback__done" role="status">
-          <p class="callback__done-head">Thank you, {{ form.name.split(' ')[0] }}.</p>
-          <p>We'll call you on {{ form.mobile }} in the {{ form.time.toLowerCase() }}.</p>
-          <button type="button" class="btn btn--ghost" @click="reset">Send another request</button>
+          <p class="callback__done-head">
+            {{ fmt(t.contact.thanks, { name: form.name.trim().split(' ')[0] }) }}
+          </p>
+          <p>
+            {{ fmt(t.contact.willCall, { mobile: form.mobile, time: t.contact.times[form.time].phrase }) }}
+          </p>
+          <button type="button" class="btn btn--ghost" @click="reset">{{ t.contact.another }}</button>
         </div>
 
         <form v-else novalidate @submit.prevent="submit">
           <div class="field">
-            <label for="cb-name">Full name</label>
+            <label for="cb-name">{{ t.contact.fullName }}</label>
             <input
               id="cb-name"
               v-model="form.name"
               type="text"
               autocomplete="name"
-              placeholder="Your name"
+              :placeholder="t.contact.namePlaceholder"
               :aria-invalid="!!errors.name"
               :aria-describedby="errors.name ? 'cb-name-err' : undefined"
               @blur="validate('name')"
               @input="clearError('name')"
             />
-            <p v-if="errors.name" id="cb-name-err" class="field__error">{{ errors.name }}</p>
+            <p v-if="errors.name" id="cb-name-err" class="field__error">{{ t.contact.errors.name }}</p>
           </div>
 
           <div class="field">
-            <label for="cb-mobile">Mobile number</label>
+            <label for="cb-mobile">{{ t.contact.mobile }}</label>
             <input
               id="cb-mobile"
               v-model="form.mobile"
               type="tel"
               autocomplete="tel"
               inputmode="tel"
+              dir="ltr"
               placeholder="+971 5X XXX XXXX"
               :aria-invalid="!!errors.mobile"
               :aria-describedby="errors.mobile ? 'cb-mobile-err' : undefined"
               @blur="validate('mobile')"
               @input="clearError('mobile')"
             />
-            <p v-if="errors.mobile" id="cb-mobile-err" class="field__error">{{ errors.mobile }}</p>
+            <p v-if="errors.mobile" id="cb-mobile-err" class="field__error">{{ t.contact.errors.mobile }}</p>
           </div>
 
           <div class="field">
-            <label for="cb-time">Best time to call</label>
+            <label for="cb-time">{{ t.contact.bestTime }}</label>
             <select id="cb-time" v-model="form.time">
-              <option>Morning</option>
-              <option>Afternoon</option>
-              <option>Evening</option>
+              <option v-for="(opt, key) in t.contact.times" :key="key" :value="key">{{ opt.label }}</option>
             </select>
           </div>
 
           <div class="field">
-            <label for="cb-message">Message (optional)</label>
+            <label for="cb-message">{{ t.contact.message }}</label>
             <textarea
               id="cb-message"
               v-model="form.message"
               rows="2"
-              placeholder="e.g. I'd like a consultation about implants or skin treatments"
+              :placeholder="t.contact.messagePlaceholder"
             ></textarea>
           </div>
 
@@ -148,13 +153,13 @@ function reset() {
               @change="clearError('consent')"
             />
             <label for="cb-consent">
-              I agree to be contacted and to the clinic's <a href="#">privacy policy</a>.
+              {{ t.contact.consentBefore }} <a href="#">{{ t.contact.privacy }}</a>{{ t.contact.consentAfter }}
             </label>
           </div>
-          <p v-if="errors.consent" id="cb-consent-err" class="field__error">{{ errors.consent }}</p>
+          <p v-if="errors.consent" id="cb-consent-err" class="field__error">{{ t.contact.errors.consent }}</p>
 
           <button type="submit" class="btn btn--slate callback__submit">
-            Request call back <span class="arrow" aria-hidden="true">→</span>
+            {{ t.contact.submit }} <span class="arrow" aria-hidden="true">→</span>
           </button>
         </form>
       </div>
@@ -203,7 +208,7 @@ function reset() {
   margin: 0;
   font-size: 13px;
   font-weight: 400;
-  text-align: right;
+  text-align: end;
 }
 
 .contact__list a:hover {
@@ -261,6 +266,14 @@ function reset() {
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%234a5a56' stroke-width='1.2'/%3E%3C/svg%3E")
     no-repeat right 4px center;
   cursor: pointer;
+}
+
+[dir='rtl'] .field select {
+  background-position: left 4px center;
+}
+
+[dir='rtl'] .field input[type='tel'] {
+  text-align: right;
 }
 
 .field textarea {

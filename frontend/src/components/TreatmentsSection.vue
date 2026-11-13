@@ -1,6 +1,14 @@
 <script setup>
-import { ref } from 'vue'
-import { treatments } from '../data/content.js'
+import { ref, computed } from 'vue'
+import { treatmentImages } from '../data/content.js'
+import { useI18n } from '../i18n'
+
+const { t } = useI18n()
+
+// Photos + the active language's titles and alt text
+const treatments = computed(() =>
+  treatmentImages.map((img, i) => ({ ...img, ...t.value.treatments.items[i] })),
+)
 
 // Card whose title is shown after a click/tap (touch screens have no hover)
 const active = ref(null)
@@ -14,33 +22,34 @@ function toggle(i) {
   <section id="treatments" class="section treatments" aria-labelledby="treatments-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow eyebrow--line">Treatments</p>
+        <p class="eyebrow eyebrow--line">{{ t.treatments.eyebrow }}</p>
         <h2 id="treatments-title" class="display">
-          What can we do <span class="script">for you?</span>
+          {{ t.treatments.title.before }} <span class="script">{{ t.treatments.title.script }}</span>
+          {{ t.treatments.title.after }}
         </h2>
       </div>
 
       <ul class="treatments__grid">
-        <li v-for="(t, i) in treatments" :key="t.title">
+        <li v-for="(item, i) in treatments" :key="i">
           <button
             type="button"
             class="card placeholder"
-            :class="{ 'is-active': active === i, 'is-empty': !t.image }"
+            :class="{ 'is-active': active === i, 'is-empty': !item.image }"
             @click="toggle(i)"
           >
             <img
-              v-if="t.image"
-              :src="t.image"
-              :alt="t.imageAlt"
+              v-if="item.image"
+              :src="item.image"
+              :alt="item.alt"
               class="card__img"
-              :style="t.imagePosition ? { objectPosition: t.imagePosition } : null"
+              :style="item.imagePosition ? { objectPosition: item.imagePosition } : null"
               width="600"
               height="400"
               loading="lazy"
               decoding="async"
             />
             <span class="card__caption">
-              <span class="card__title">{{ t.title }}</span>
+              <span class="card__title">{{ item.title }}</span>
             </span>
           </button>
         </li>
@@ -72,7 +81,7 @@ function toggle(i) {
   border: 0;
   border-radius: 0;
   cursor: pointer;
-  text-align: left;
+  text-align: start;
 }
 
 .card__img {

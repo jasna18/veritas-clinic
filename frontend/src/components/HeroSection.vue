@@ -1,7 +1,8 @@
 <script setup>
-import { marqueeItems } from '../data/content.js'
+import { useI18n } from '../i18n'
 import heroPhoto from '../assets/images/hero-portrait.webp'
 
+const { t } = useI18n()
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
     <div class="hero__photo">
       <img
         :src="heroPhoto"
-        alt="Woman with clear, glowing skin in profile against a soft sage-green wall"
+        :alt="t.hero.photoAlt"
         width="1672"
         height="941"
         fetchpriority="high"
@@ -21,24 +22,24 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
     <!-- <span class="hero__tag" aria-hidden="true">Hero photo · close-up natural smile, warm light</span> -->
 
     <div class="container hero__content">
-      <p class="hero__eyebrow">Implantology &amp; aesthetics · Dubai</p>
+      <p class="hero__eyebrow">{{ t.hero.eyebrow }}</p>
       <h1 id="hero-title" class="hero__title">
-        The art of<br />
-        <span class="script">natural</span> beauty
+        {{ t.hero.title.before }}<br />
+        <span class="script">{{ t.hero.title.script }}</span> {{ t.hero.title.after }}
       </h1>
       <div class="hero__bottom">
         <div class="hero__ctas">
           <a href="#book" class="btn btn--gold">
-            Book a visit <span class="arrow" aria-hidden="true">→</span>
+            {{ t.header.bookVisit }} <span class="arrow" aria-hidden="true">→</span>
           </a>
         </div>
       </div>
     </div>
 
-    <div class="marquee" aria-label="Services">
+    <div class="marquee" :aria-label="t.hero.servicesAria">
       <div class="marquee__track">
         <ul v-for="n in 2" :key="n" class="marquee__list" :aria-hidden="n === 2">
-          <li v-for="item in marqueeItems" :key="item">
+          <li v-for="item in t.hero.marquee" :key="item">
             {{ item }}<span class="marquee__dot" aria-hidden="true"></span>
           </li>
         </ul>

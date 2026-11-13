@@ -2,6 +2,9 @@
 import { ref, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import BrandLogo from './BrandLogo.vue'
 import { navLinks, clinic } from '../data/content.js'
+import { useI18n } from '../i18n'
+
+const { t, toggleLocale } = useI18n()
 
 const scrolled = ref(false)
 const menuOpen = ref(false)
@@ -47,11 +50,20 @@ onBeforeUnmount(() => {
 <template>
   <header class="header" :class="{ 'header--solid': scrolled }">
     <div class="header__inner">
-      <a href="#top" class="header__logo" aria-label="Veritas Polyclinic — home">
+      <a href="#top" class="header__logo" :aria-label="t.header.homeAria">
         <BrandLogo />
       </a>
       <div class="header__actions">
-        <a href="#book" class="header__book">Book a visit</a>
+        <button
+          type="button"
+          class="header__lang"
+          :lang="t.lang.switchLang"
+          :aria-label="t.lang.switchAria"
+          @click="toggleLocale"
+        >
+          {{ t.lang.switchLabel }}
+        </button>
+        <a href="#book" class="header__book">{{ t.header.bookVisit }}</a>
         <button
           ref="menuButton"
           type="button"
@@ -61,7 +73,7 @@ onBeforeUnmount(() => {
           aria-controls="site-menu"
           @click="openMenu"
         >
-          Menu
+          {{ t.header.menu }}
           <span class="burger" aria-hidden="true"><span></span><span></span></span>
         </button>
       </div>
@@ -80,15 +92,15 @@ onBeforeUnmount(() => {
       class="menu"
       role="dialog"
       aria-modal="true"
-      aria-label="Site menu"
+      :aria-label="t.header.menuAria"
     >
       <div class="menu__top">
-        <span class="eyebrow eyebrow--light">Veritas Polyclinic · Dubai</span>
+        <span class="eyebrow eyebrow--light">{{ t.clinic.brandLine }}</span>
         <button type="button" class="header__menu header__menu--light" @click="closeMenu">
-          Close <span aria-hidden="true" class="close-x">×</span>
+          {{ t.header.close }} <span aria-hidden="true" class="close-x">×</span>
         </button>
       </div>
-      <nav class="menu__nav" aria-label="Primary">
+      <nav class="menu__nav" :aria-label="t.header.navAria">
         <a
           v-for="(link, i) in navLinks"
           :key="link.href"
@@ -98,14 +110,14 @@ onBeforeUnmount(() => {
           @click="closeMenu"
         >
           <span class="menu__num">0{{ i + 1 }}</span>
-          {{ link.label }}
+          {{ t.nav[link.key] }}
         </a>
       </nav>
       <div class="menu__foot">
-        <a :href="clinic.phoneHref">{{ clinic.phone }}</a>
-        <span>{{ clinic.email }}</span>
+        <a :href="clinic.phoneHref" dir="ltr">{{ clinic.phone }}</a>
+        <span dir="ltr">{{ clinic.email }}</span>
         <a href="#book" class="btn btn--gold" @click="closeMenu">
-          Book a visit <span class="arrow" aria-hidden="true">→</span>
+          {{ t.header.bookVisit }} <span class="arrow" aria-hidden="true">→</span>
         </a>
       </div>
     </div>
@@ -149,6 +161,35 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+/* Language toggle: shows the other language's name */
+.header__lang {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--slate);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease);
+}
+
+.header__lang:hover {
+  color: var(--gold);
+}
+
+.header__lang[lang='ar'] {
+  font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+  font-size: 15px;
+}
+
+.header__lang[lang='en'] {
+  font-family: var(--font-body-latin);
+  font-size: 12px;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase;
 }
 
 .header__book {
@@ -283,7 +324,7 @@ onBeforeUnmount(() => {
 }
 
 .menu__foot .btn {
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 
 .menu-enter-active,
@@ -349,6 +390,17 @@ onBeforeUnmount(() => {
   .menu-leave-to {
     opacity: 1;
     transform: translateX(100%);
+  }
+
+  /* Arabic: panel slides in from the left */
+  [dir='rtl'] .menu {
+    inset: 0 auto 0 0;
+    box-shadow: 24px 0 60px rgba(43, 26, 18, 0.25);
+  }
+
+  [dir='rtl'] .menu-enter-from,
+  [dir='rtl'] .menu-leave-to {
+    transform: translateX(-100%);
   }
 
   .backdrop-enter-active,

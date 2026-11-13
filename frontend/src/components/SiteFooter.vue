@@ -1,5 +1,8 @@
 <script setup>
 import { clinic, navLinks } from '../data/content.js'
+import { useI18n } from '../i18n'
+
+const { t, locale, setLocale } = useI18n()
 </script>
 
 <template>
@@ -7,29 +10,29 @@ import { clinic, navLinks } from '../data/content.js'
     <div class="container">
       <div class="footer__cols">
         <div>
-          <p class="footer__label">Visit</p>
-          <p>{{ clinic.addressShort }}<br />Dubai, UAE</p>
+          <p class="footer__label">{{ t.footer.visit }}</p>
+          <p>{{ t.clinic.addressShort }}<br />{{ t.clinic.city }}</p>
         </div>
-        <nav aria-label="Footer">
-          <p class="footer__label">Pages</p>
+        <nav :aria-label="t.footer.navAria">
+          <p class="footer__label">{{ t.footer.pages }}</p>
           <ul>
             <li v-for="link in navLinks" :key="link.href">
-              <a :href="link.href">{{ link.label }}</a>
+              <a :href="link.href">{{ t.nav[link.key] }}</a>
             </li>
           </ul>
         </nav>
         <div>
-          <p class="footer__label">Contact</p>
+          <p class="footer__label">{{ t.footer.contact }}</p>
           <ul>
-            <li><a :href="clinic.phoneHref">{{ clinic.phone }}</a></li>
-            <li>{{ clinic.email }}</li>
-            <li>{{ clinic.hours }}</li>
+            <li><a :href="clinic.phoneHref" dir="ltr">{{ clinic.phone }}</a></li>
+            <li dir="ltr">{{ clinic.email }}</li>
+            <li>{{ t.clinic.hours }}</li>
           </ul>
         </div>
         <div>
-          <p class="footer__label">Appointments</p>
+          <p class="footer__label">{{ t.footer.appointments }}</p>
           <a href="#book" class="btn btn--gold">
-            Book a visit <span class="arrow" aria-hidden="true">→</span>
+            {{ t.header.bookVisit }} <span class="arrow" aria-hidden="true">→</span>
           </a>
         </div>
       </div>
@@ -37,11 +40,32 @@ import { clinic, navLinks } from '../data/content.js'
       <p class="footer__wordmark" aria-hidden="true">Veritas</p>
 
       <div class="footer__bar">
-        <span>© {{ new Date().getFullYear() }} Veritas Polyclinic Dubai</span>
+        <span>© {{ new Date().getFullYear() }} {{ t.footer.copyright }}</span>
         <div class="footer__legal">
-          <a href="#">Privacy policy</a>
-          <a href="#">Terms</a>
-          <span>English · <span lang="ar">العربية</span></span>
+          <a href="#">{{ t.footer.privacy }}</a>
+          <a href="#">{{ t.footer.terms }}</a>
+          <!-- Language switch -->
+          <span class="footer__langs">
+            <button
+              type="button"
+              lang="en"
+              :aria-pressed="locale === 'en'"
+              :class="{ 'is-current': locale === 'en' }"
+              @click="setLocale('en')"
+            >
+              English
+            </button>
+            ·
+            <button
+              type="button"
+              lang="ar"
+              :aria-pressed="locale === 'ar'"
+              :class="{ 'is-current': locale === 'ar' }"
+              @click="setLocale('ar')"
+            >
+              العربية
+            </button>
+          </span>
         </div>
       </div>
     </div>
@@ -112,6 +136,27 @@ import { clinic, navLinks } from '../data/content.js'
   display: flex;
   gap: 18px;
   flex-wrap: wrap;
+}
+
+.footer__langs button {
+  padding: 4px 2px;
+  border: 0;
+  background: none;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.footer__langs button[lang='ar'] {
+  font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+  font-size: 13px;
+}
+
+.footer__langs button:hover,
+.footer__langs .is-current {
+  color: var(--slate);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Visit, Pages and Contact side by side; Appointments on its own row below */

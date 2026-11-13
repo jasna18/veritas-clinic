@@ -1,19 +1,22 @@
 <script setup>
-import { steps } from '../data/content.js'
+import { useI18n } from '../i18n'
+
+const { t } = useI18n()
 </script>
 
 <template>
   <section id="approach" class="section approach" aria-labelledby="approach-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow eyebrow--line">Our approach</p>
+        <p class="eyebrow eyebrow--line">{{ t.approach.eyebrow }}</p>
         <h2 id="approach-title" class="display">
-          Four steps, <span class="script">never rushed</span>
+          {{ t.approach.title.before }} <span class="script">{{ t.approach.title.script }}</span>
+          {{ t.approach.title.after }}
         </h2>
       </div>
 
       <ol class="steps">
-        <li v-for="s in steps" :key="s.title" class="step">
+        <li v-for="(s, i) in t.approach.steps" :key="i" class="step">
           <h3 class="step__title">{{ s.title }}</h3>
           <p class="step__body">{{ s.body }}</p>
         </li>
@@ -46,7 +49,7 @@ import { steps } from '../data/content.js'
 /* First column stays empty so titles keep their position under the heading */
 .step__title {
   grid-column: 2;
-  padding-left: 60px;
+  padding-inline-start: 60px;
   font-size: clamp(26px, 3vw, 34px);
   color: var(--slate);
 }
@@ -67,7 +70,7 @@ import { steps } from '../data/content.js'
 
   .step__title {
     grid-column: auto;
-    padding-left: 0;
+    padding-inline-start: 0;
   }
 
   .step__body {

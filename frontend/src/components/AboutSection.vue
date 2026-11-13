@@ -3,23 +3,26 @@ import doctorPhoto from '../assets/images/doctor-portrait.webp'
 import treatmentRoom from '../assets/images/clinic-treatment-room.webp'
 import reception from '../assets/images/clinic-reception.webp'
 import lounge from '../assets/images/clinic-lounge.webp'
+import { computed } from 'vue'
 import ClinicGallery from './ClinicGallery.vue'
-import { clinic } from '../data/content.js'
+import { useI18n } from '../i18n'
 
-const gallery = [
-  { src: treatmentRoom, alt: 'Treatment room with a sage-green dental chair and garden view' },
-  { src: reception, alt: 'Reception desk with warm lighting and fresh flowers' },
-  { src: lounge, alt: 'Patient lounge with sofas and armchairs' },
-]
+const { t, fmt } = useI18n()
+
+// Photo alt text comes from the active language
+const gallery = computed(() =>
+  [treatmentRoom, reception, lounge].map((src, i) => ({ src, alt: t.value.about.gallery[i] })),
+)
 </script>
 
 <template>
   <section id="about" class="section about" aria-labelledby="about-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow eyebrow--line">About us</p>
+        <p class="eyebrow eyebrow--line">{{ t.about.eyebrow }}</p>
         <h2 id="about-title" class="display">
-          Trusted &amp; professional in <span class="script">aesthetic care</span>
+          {{ t.about.title.before }} <span class="script">{{ t.about.title.script }}</span>
+          {{ t.about.title.after }}
         </h2>
       </div>
 
@@ -27,7 +30,7 @@ const gallery = [
         <div class="about__portrait">
           <img
             :src="doctorPhoto"
-            :alt="`${clinic.doctor.name}, founder of Veritas Polyclinic`"
+            :alt="fmt(t.about.doctorAlt, { name: t.clinic.doctorName })"
             class="about__photo"
             width="471"
             height="468"
@@ -37,27 +40,22 @@ const gallery = [
         </div>
 
         <div class="about__copy">
-          <p>
-            Welcome to Veritas Polyclinic – your trusted partner for advanced implantology, aesthetic
-            dentistry, medical aesthetics and cosmetic treatments in Dubai. We offer a personal and
-            innovative approach in which the well-being of every patient is central, in a modern
-            clinic designed with your comfort in mind.
-          </p>
-          <p>
-            Whether you are looking for dental implants, a smile makeover or cosmetic treatments for
-            your face and skin, our specialists work together under one roof. We combine the latest
-            technologies with a personal touch to deliver natural-looking results and the care you
-            deserve.
-          </p>
+          <p>{{ t.about.p1 }}</p>
+          <p>{{ t.about.p2 }}</p>
           <!-- Doctor's name as a signature, in the same script as "oral care" -->
           <p class="about__signature">
-            <span class="script">{{ clinic.doctor.name }}</span>
-            <span class="about__role">Founder</span>
+            <span class="script">{{ t.clinic.doctorName }}</span>
+            <span class="about__role">{{ t.clinic.doctorRole }}</span>
           </p>
         </div>
       </div>
 
-      <ClinicGallery :images="gallery" class="about__gallery" />
+      <ClinicGallery
+        :images="gallery"
+        :label="t.about.galleryAria"
+        :show-label="t.about.showPhoto"
+        class="about__gallery"
+      />
     </div>
   </section>
 </template>

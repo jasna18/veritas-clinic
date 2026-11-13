@@ -4,6 +4,8 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 const props = defineProps({
   images: { type: Array, required: true }, // [{ src, alt }]
   interval: { type: Number, default: 3500 },
+  label: { type: String, default: 'Inside the clinic' }, // group name for screen readers
+  showLabel: { type: String, default: 'Show photo: {alt}' }, // button label per photo
 })
 
 const stage = ref(null)
@@ -74,7 +76,7 @@ onBeforeUnmount(() => {
     class="fan"
     :class="{ 'is-revealed': revealed }"
     role="group"
-    aria-label="Inside the clinic"
+    :aria-label="label"
     @mouseenter="onHover"
   >
     <button
@@ -84,7 +86,7 @@ onBeforeUnmount(() => {
       class="fan__card"
       :class="`is-${slot(i)}`"
       :style="{ '--i': i }"
-      :aria-label="`Show photo: ${img.alt}`"
+      :aria-label="showLabel.replace('{alt}', img.alt)"
       :aria-pressed="slot(i) === 'front'"
       @click="show(i)"
     >

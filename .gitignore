@@ -53,11 +53,10 @@ __screenshots__/
 *.sln
 *.sw?
 
-# AI assistant local files
-.claude/
-CLAUDE.md
-
 # OS files
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Local documentation (kept off GitHub)
+docs/

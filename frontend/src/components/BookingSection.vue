@@ -1,5 +1,7 @@
 <script setup>
-import { bookingSteps } from '../data/content.js'
+import { useI18n } from '../i18n'
+
+const { t, fmt } = useI18n()
 </script>
 
 <template>
@@ -7,19 +9,20 @@ import { bookingSteps } from '../data/content.js'
     <div class="container">
       <div class="booking__head">
         <div>
-          <p class="eyebrow eyebrow--line booking__eyebrow">Book a visit</p>
+          <p class="eyebrow eyebrow--line booking__eyebrow">{{ t.booking.eyebrow }}</p>
           <h2 id="book-title" class="booking__title">
-            Book in <span class="script">three</span> steps
+            {{ t.booking.title.before }} <span class="script">{{ t.booking.title.script }}</span>
+            {{ t.booking.title.after }}
           </h2>
         </div>
         <a href="#contact" class="btn btn--gold">
-          Start booking <span class="arrow" aria-hidden="true">→</span>
+          {{ t.booking.cta }} <span class="arrow" aria-hidden="true">→</span>
         </a>
       </div>
 
       <ol class="booking__steps">
-        <li v-for="(s, i) in bookingSteps" :key="s.title">
-          <span class="booking__num">No.0{{ i + 1 }}</span>
+        <li v-for="(s, i) in t.booking.steps" :key="i">
+          <span class="booking__num">{{ fmt(t.booking.stepLabel, { n: i + 1 }) }}</span>
           <h3 class="booking__step-title">{{ s.title }}</h3>
           <p class="booking__body">{{ s.body }}</p>
         </li>

@@ -1,5 +1,7 @@
 <template>
-  <svg class="logo" viewBox="0 0 740 1100" role="img" aria-label="Veritas Polyclinic Dubai">
+  <!-- dir/direction ltr: the logo must not mirror or shift when the page is in Arabic (RTL) -->
+  <svg class="logo" viewBox="0 0 740 1100" role="img" aria-label="Veritas Polyclinic Dubai" dir="ltr" style="direction: ltr; unicode-bidi: isolate">
+
     <defs>
       <!-- Hides the oval behind the wordmark -->
       <mask id="veritas-logo-gap">

@@ -1,9 +1,7 @@
 // Page content. Bracketed values are placeholders to be replaced with real clinic details.
 
-import implantImg from '../assets/images/treatment-implant.webp'
 import periodontologyImg from '../assets/images/treatment-periodontology.webp'
 import invisibleBracesImg from '../assets/images/treatment-invisible-braces.webp'
-import rehabilitationImg from '../assets/images/treatment-rehabilitation.webp'
 import aestheticImg from '../assets/images/treatment-aesthetic.webp'
 import surgeryImg from '../assets/images/treatment-surgery.webp'
 import medicalAestheticsImg from '../assets/images/treatment-medical-aesthetics.webp'
@@ -45,11 +43,6 @@ export const marqueeItems = [
 
 export const treatments = [
   {
-    title: 'Advanced implantology',
-    image: implantImg,
-    imageAlt: 'Modern dental treatment room with a patient chair and equipment',
-  },
-  {
     title: 'Aesthetic dentistry',
     image: aestheticImg,
     imageAlt: 'Smiling patient during a dental check-up',
@@ -75,11 +68,6 @@ export const treatments = [
     title: 'Invisible braces',
     image: invisibleBracesImg,
     imageAlt: 'Close-up of a clear aligner being fitted over front teeth',
-  },
-  {
-    title: 'Rehabilitation',
-    image: rehabilitationImg,
-    imageAlt: 'Dentist in surgical gown treating a patient, with a dental X-ray on screen',
   },
   {
     title: 'Surgery',

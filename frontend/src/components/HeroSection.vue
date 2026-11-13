@@ -1,6 +1,6 @@
 <script setup>
 import { marqueeItems } from '../data/content.js'
-import heroPhoto from '../assets/images/hero-smile.webp'
+import heroPhoto from '../assets/images/hero-portrait.webp'
 
 </script>
 
@@ -11,7 +11,7 @@ import heroPhoto from '../assets/images/hero-smile.webp'
     <div class="hero__photo">
       <img
         :src="heroPhoto"
-        alt="Smiling woman with a bright, natural smile against a soft sage-green wall"
+        alt="Woman with clear, glowing skin in profile against a soft sage-green wall"
         width="1672"
         height="941"
         fetchpriority="high"
@@ -222,6 +222,27 @@ import heroPhoto from '../assets/images/hero-smile.webp'
   }
 }
 
+/* Desktop: photo zoomed out a little — starts below the header,
+   anchored to the right, left edge fading into the hero green */
+@media (min-width: 901px) {
+  .hero__photo {
+    inset: var(--header-h) 0 0 auto;
+    width: min(86%, 1400px); /* cap so very wide screens don't zoom back in */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 22%);
+  }
+
+  [dir='rtl'] .hero__photo {
+    inset: var(--header-h) auto 0 0;
+    -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 22%);
+    mask-image: linear-gradient(to left, transparent 0%, #000 22%);
+  }
+
+  .hero__photo img {
+    object-position: 100% 0%;
+  }
+}
+
 @media (max-width: 900px) {
   /* Tablets too: hero sized to its content, so no empty band under the photo */
   .hero {
@@ -293,11 +314,15 @@ import heroPhoto from '../assets/images/hero-smile.webp'
     min-height: 100svh;
   }
 
+  /* Photo zoomed out a little: fills the top ~3/4 of the screen,
+     then fades into the hero green behind the writing */
   .hero__photo img {
-    height: 100%;
-    object-position: 72% 30%;
-    -webkit-mask-image: none;
-    mask-image: none;
+    height: 74%;
+    margin-top: calc(var(--header-h) + 70px); /* lower, so her whole head shows below the header */
+    object-position: 100% 0%; /* her face sits at the photo's right edge; show from the top */
+    /* soft fade at the top and bottom edges into the hero green */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 72%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 72%, transparent 100%);
   }
 
   /* Hero green fades in only at the bottom, behind the writing */

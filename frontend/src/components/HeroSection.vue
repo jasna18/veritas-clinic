@@ -1,18 +1,19 @@
 <script setup>
 import { marqueeItems } from '../data/content.js'
-import receptionPhoto from '../assets/images/hero-reception.webp'
+import heroPhoto from '../assets/images/hero-smile.webp'
+
 </script>
 
 <template>
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__bg" aria-hidden="true"></div>
-    <!-- Reception photo: right half on desktop, top band on phones -->
+    <!-- Reception photo: right half on desktop (left in Arabic), top band on phones -->
     <div class="hero__photo">
       <img
-        :src="receptionPhoto"
-        alt="Veritas Polyclinic reception with the Veritas logo on a green feature wall"
-        width="1144"
-        height="607"
+        :src="heroPhoto"
+        alt="Smiling woman with a bright, natural smile against a soft sage-green wall"
+        width="1672"
+        height="941"
         fetchpriority="high"
         decoding="async"
       />
@@ -30,7 +31,6 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
           <a href="#book" class="btn btn--gold">
             Book a visit <span class="arrow" aria-hidden="true">→</span>
           </a>
-          <a href="#treatments" class="btn btn--ghost-light">View treatments</a>
         </div>
       </div>
     </div>
@@ -67,21 +67,44 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
     linear-gradient(180deg, #6d7c78 0%, #56645f 55%, #4a5752 100%);
 }
 
+/* Hero photo fills the section: smile on the right, sage space on the left for the text */
 .hero__photo {
   position: absolute;
-  inset-block: 0;
-  inset-inline-end: 0;
-  width: 58%;
-  /* fade the photo into the green panel on the text side */
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 34%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 34%);
+  inset: 0;
 }
 
 .hero__photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 45% 50%;
+  object-position: 70% 30%;
+}
+
+/* Soft hero-green tint on the text side keeps the writing readable */
+.hero__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(74, 90, 86, 0.62) 0%,
+    rgba(74, 90, 86, 0.38) 38%,
+    rgba(74, 90, 86, 0) 62%
+  );
+}
+
+/* Arabic: text sits on the right, so mirror the photo and the tint */
+[dir='rtl'] .hero__photo img {
+  transform: scaleX(-1);
+}
+
+[dir='rtl'] .hero__photo::after {
+  background: linear-gradient(
+    to left,
+    rgba(74, 90, 86, 0.62) 0%,
+    rgba(74, 90, 86, 0.38) 38%,
+    rgba(74, 90, 86, 0) 62%
+  );
 }
 
 .hero__tag {
@@ -99,7 +122,7 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
 .hero__content {
   position: relative;
   padding-top: calc(var(--header-h) + 120px);
-  padding-bottom: 40px;
+  padding-bottom: 120px; /* lifts the writing up from the bottom of the hero */
 }
 
 .hero__eyebrow {
@@ -147,6 +170,7 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
 .marquee {
   position: relative;
   min-width: 0;
+  direction: ltr; /* same scroll direction in both languages */
   background: rgba(58, 71, 68, 0.88); /* keeps the strip readable over the photo */
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -204,9 +228,10 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
     min-height: 0;
   }
 
-  /* Phones & tablets: the reception photo is the full hero background,
+  /* Phones & tablets: the hero photo sits at the top,
      blended into the hero's slate green so the text stays readable */
-  .hero__photo {
+  .hero__photo,
+  [dir='rtl'] .hero__photo {
     inset: 0;
     width: 100%;
     height: 100%;
@@ -214,11 +239,11 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
     mask-image: none;
   }
 
-  /* Photo fills the top of the hero (logo wall above the heading),
+  /* Photo fills the top of the hero (her smile above the heading),
      then melts into the slate green behind the text */
   .hero__photo img {
     height: calc(var(--header-h) + 440px);
-    object-position: 58% 50%;
+    object-position: 66% 30%;
     /* hero colour blends in on all four edges of the photo */
     -webkit-mask-image:
       linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
@@ -230,7 +255,8 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
     mask-composite: intersect;
   }
 
-  .hero__photo::after {
+  .hero__photo::after,
+  [dir='rtl'] .hero__photo::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -238,13 +264,13 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
       180deg,
       rgba(74, 90, 86, 0.18) 0%,
       rgba(74, 90, 86, 0.28) calc(var(--header-h) + 180px),
-      rgba(66, 80, 76, 0.86) calc(var(--header-h) + 285px),
+      rgba(66, 80, 76, 0.86) calc(var(--header-h) + 255px),
       rgba(66, 80, 76, 0.92) 100%
     );
   }
 
   .hero__content {
-    padding-top: calc(var(--header-h) + 300px); /* heading starts below the logo wall */
+    padding-top: calc(var(--header-h) + 270px); /* heading starts just below the photo */
   }
 
   /* "Cosmetic & aesthetic dentistry" line: clear against the photo */
@@ -262,14 +288,33 @@ import receptionPhoto from '../assets/images/hero-reception.webp'
 }
 
 @media (max-width: 700px) {
-  /* Size to content on phones so there's no empty band above the heading */
+  /* Phones: the whole hero screen is her face; writing sits at the bottom */
   .hero {
-    min-height: 0;
+    min-height: 100svh;
+  }
+
+  .hero__photo img {
+    height: 100%;
+    object-position: 72% 30%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  /* Hero green fades in only at the bottom, behind the writing */
+  .hero__photo::after,
+  [dir='rtl'] .hero__photo::after {
+    background: linear-gradient(
+      180deg,
+      rgba(74, 90, 86, 0) 0%,
+      rgba(74, 90, 86, 0) 42%,
+      rgba(66, 80, 76, 0.78) 66%,
+      rgba(62, 76, 72, 0.94) 100%
+    );
   }
 
   .hero__content {
-    padding-top: calc(var(--header-h) + 300px); /* heading starts below the logo wall */
-    padding-bottom: 36px;
+    padding-top: var(--header-h);
+    padding-bottom: 32px;
   }
 
   .hero__tag {

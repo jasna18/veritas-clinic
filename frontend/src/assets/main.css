@@ -2,7 +2,7 @@
   /* The design is light-only; stop phone browsers from auto-darkening it */
   color-scheme: only light;
 
-  /* Palette */
+  /* Original palette (sage green & gold) — kept for reference, switched off for the colour experiment
   --cream: #f6efe5;
   --cream-soft: #faf6f0;
   --sand: #e3d9cc;
@@ -10,12 +10,36 @@
   --slate: #4a5a56;
   --slate-deep: #3f4d4a;
   --gold: #b47f14;
-  --gold-text: #8a5f08; /* readable gold for text on cream (4.7:1) */
+  --gold-text: #8a5f08;
   --gold-hover: #9c6d0f;
   --ink: #35403d;
   --muted: #5f6966;
   --line: rgba(74, 90, 86, 0.16);
   --line-light: rgba(246, 239, 229, 0.18);
+  */
+
+  /* Experimental palette (coffee & caramel) */
+  --cream-2: #ece2d4;
+  --latte: #d7bfa4;
+  --caramel: #b08968;
+  --espresso: #4a2f23;
+  --dark: #2b1a12;
+  --accent: #c47a3d;
+
+  /* Existing colour names mapped onto the experimental palette */
+  --cream: #f3ece3;
+  --cream-soft: var(--cream-2);
+  --sand: var(--latte);
+  --sand-deep: var(--caramel);
+  --slate: var(--espresso);
+  --slate-deep: var(--dark);
+  --gold: var(--accent);
+  --gold-text: #9a5a25; /* darker accent so small text stays readable on cream */
+  --gold-hover: #a8652f;
+  --ink: var(--dark);
+  --muted: #6f5a4d;
+  --line: rgba(74, 47, 35, 0.16);
+  --line-light: rgba(243, 236, 227, 0.18);
 
   /* Type */
   --font-display: 'Marcellus', 'Times New Roman', serif;

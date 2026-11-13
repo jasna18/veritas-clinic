@@ -247,7 +247,7 @@ function reset() {
   min-height: 44px;
   padding: 10px 0;
   border: 0;
-  border-bottom: 1px solid rgba(74, 90, 86, 0.3);
+  border-bottom: 1px solid rgba(74, 47, 35, 0.3);
   border-radius: 0;
   background: transparent;
   font-size: 15px;

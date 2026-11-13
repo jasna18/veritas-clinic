@@ -63,8 +63,8 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 55% 45% at 72% 22%, rgba(214, 208, 190, 0.55), transparent 70%),
-    linear-gradient(180deg, #6d7c78 0%, #56645f 55%, #4a5752 100%);
+    radial-gradient(ellipse 55% 45% at 72% 22%, rgba(215, 191, 164, 0.55), transparent 70%),
+    linear-gradient(180deg, #7a5a48 0%, #5c3f30 55%, #4a2f23 100%);
 }
 
 /* Hero photo fills the section: smile on the right, sage space on the left for the text */
@@ -87,9 +87,9 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(74, 90, 86, 0.62) 0%,
-    rgba(74, 90, 86, 0.38) 38%,
-    rgba(74, 90, 86, 0) 62%
+    rgba(74, 47, 35, 0.62) 0%,
+    rgba(74, 47, 35, 0.38) 38%,
+    rgba(74, 47, 35, 0) 62%
   );
 }
 
@@ -101,9 +101,9 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
 [dir='rtl'] .hero__photo::after {
   background: linear-gradient(
     to left,
-    rgba(74, 90, 86, 0.62) 0%,
-    rgba(74, 90, 86, 0.38) 38%,
-    rgba(74, 90, 86, 0) 62%
+    rgba(74, 47, 35, 0.62) 0%,
+    rgba(74, 47, 35, 0.38) 38%,
+    rgba(74, 47, 35, 0) 62%
   );
 }
 
@@ -141,7 +141,7 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
 }
 
 .hero__title .script {
-  color: #d39b2c;
+  color: #d9955a;
   font-size: 1.02em;
 }
 
@@ -171,7 +171,7 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
   position: relative;
   min-width: 0;
   direction: ltr; /* same scroll direction in both languages */
-  background: rgba(58, 71, 68, 0.88); /* keeps the strip readable over the photo */
+  background: rgba(52, 33, 24, 0.88); /* keeps the strip readable over the photo */
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-top: 1px solid var(--line-light);
@@ -283,10 +283,10 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(74, 90, 86, 0.18) 0%,
-      rgba(74, 90, 86, 0.28) calc(var(--header-h) + 180px),
-      rgba(66, 80, 76, 0.86) calc(var(--header-h) + 255px),
-      rgba(66, 80, 76, 0.92) 100%
+      rgba(74, 47, 35, 0.18) 0%,
+      rgba(74, 47, 35, 0.28) calc(var(--header-h) + 180px),
+      rgba(60, 38, 28, 0.86) calc(var(--header-h) + 255px),
+      rgba(60, 38, 28, 0.92) 100%
     );
   }
 
@@ -300,7 +300,7 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
     font-weight: 700;
     letter-spacing: 0.12em;
     color: #fff;
-    text-shadow: 0 1px 8px rgba(30, 40, 37, 0.7);
+    text-shadow: 0 1px 8px rgba(43, 26, 18, 0.7);
   }
 
   .hero__bottom {
@@ -330,10 +330,10 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
   [dir='rtl'] .hero__photo::after {
     background: linear-gradient(
       180deg,
-      rgba(74, 90, 86, 0) 0%,
-      rgba(74, 90, 86, 0) 42%,
-      rgba(66, 80, 76, 0.78) 66%,
-      rgba(62, 76, 72, 0.94) 100%
+      rgba(74, 47, 35, 0) 0%,
+      rgba(74, 47, 35, 0) 42%,
+      rgba(60, 38, 28, 0.78) 66%,
+      rgba(52, 33, 24, 0.94) 100%
     );
   }
 

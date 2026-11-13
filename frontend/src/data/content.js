@@ -1,6 +1,6 @@
 // Page content. Bracketed values are placeholders to be replaced with real clinic details.
 
-import periodontologyImg from '../assets/images/treatment-periodontology.webp'
+import skinRejuvenationImg from '../assets/images/treatment-skin-rejuvenation.webp'
 import invisibleBracesImg from '../assets/images/treatment-invisible-braces.webp'
 import aestheticImg from '../assets/images/treatment-aesthetic.webp'
 import surgeryImg from '../assets/images/treatment-surgery.webp'
@@ -60,9 +60,10 @@ export const treatments = [
     imagePosition: '45% 40%',
   },
   {
-    title: 'Periodontology',
-    image: periodontologyImg,
-    imageAlt: 'Dentist examining a patient’s gums, with a gum and bone diagram on screen',
+    title: 'Skin rejuvenation',
+    image: skinRejuvenationImg,
+    imageAlt: 'Client receiving a microneedling skin treatment',
+    imagePosition: '55% 40%',
   },
   {
     title: 'Invisible braces',

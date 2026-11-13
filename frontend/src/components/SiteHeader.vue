@@ -260,7 +260,7 @@ onBeforeUnmount(() => {
 }
 
 .menu__link:hover {
-  color: var(--accent-on-dark);
+  color: #e0a874;
 }
 
 .menu__num {

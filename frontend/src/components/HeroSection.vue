@@ -141,7 +141,7 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
 }
 
 .hero__title .script {
-  color: var(--accent-on-dark);
+  color: #d9955a;
   font-size: 1.02em;
 }
 

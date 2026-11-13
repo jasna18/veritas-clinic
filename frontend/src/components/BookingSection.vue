@@ -56,7 +56,7 @@ import { bookingSteps } from '../data/content.js'
 }
 
 .booking__title .script {
-  color: var(--accent-on-dark);
+  color: #d9955a;
 }
 
 .booking__steps {

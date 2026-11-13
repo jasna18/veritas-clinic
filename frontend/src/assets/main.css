@@ -33,34 +33,18 @@
   --sand-deep: var(--caramel);
   --slate: var(--espresso);
   --slate-deep: var(--dark);
-  /* Coffee accent — switched off for the Cartier-style experiment
   --gold: var(--accent);
-  --gold-text: #9a5a25;
+  --gold-text: #9a5a25; /* darker accent so small text stays readable on cream */
   --gold-hover: #a8652f;
-  */
-
-  /* Cartier red, used sparingly as the accent (buttons, small labels, accent words) */
-  --cartier-red: #a6192e;
-  --gold: var(--cartier-red);
-  --gold-text: var(--cartier-red);
-  --gold-hover: #861425;
-  --accent-on-dark: #e8a3ad; /* soft red for accent words on dark backgrounds */
   --ink: var(--dark);
   --muted: #6f5a4d;
   --line: rgba(74, 47, 35, 0.16);
   --line-light: rgba(243, 236, 227, 0.18);
 
   /* Type */
-  /* Previous fonts — switched off for the Cartier-style experiment
   --font-display: 'Marcellus', 'Times New Roman', serif;
   --font-script: 'Pinyon Script', cursive;
   --font-body: 'Lato', system-ui, sans-serif;
-  */
-
-  /* Serif headings, clean sans-serif body */
-  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
-  --font-script: 'Cormorant Garamond', 'Times New Roman', serif; /* accent words in italic */
-  --font-body: 'Inter', system-ui, sans-serif;
 
   /* Layout */
   --gutter: 40px;
@@ -186,7 +170,6 @@ p {
 
 .script {
   font-family: var(--font-script);
-  font-style: italic; /* elegant serif italic replaces the handwriting script */
   text-transform: none;
   letter-spacing: 0;
   color: var(--gold-text);

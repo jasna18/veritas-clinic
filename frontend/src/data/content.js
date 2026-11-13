@@ -6,6 +6,7 @@ import invisibleBracesImg from '../assets/images/treatment-invisible-braces.webp
 import rehabilitationImg from '../assets/images/treatment-rehabilitation.webp'
 import aestheticImg from '../assets/images/treatment-aesthetic.webp'
 import surgeryImg from '../assets/images/treatment-surgery.webp'
+import medicalAestheticsImg from '../assets/images/treatment-medical-aesthetics.webp'
 
 export const clinic = {
   name: 'Veritas Polyclinic',
@@ -52,7 +53,12 @@ export const treatments = [
     image: aestheticImg,
     imageAlt: 'Smiling patient during a dental check-up',
   },
-  { title: 'Medical aesthetics' }, // photo to come
+  {
+    title: 'Medical aesthetics',
+    image: medicalAestheticsImg,
+    imageAlt: 'Practitioner in gloves giving a lip filler treatment',
+    imagePosition: '60% 40%',
+  },
   { title: 'Cosmetic treatments' }, // photo to come
   {
     title: 'Periodontology',

@@ -134,7 +134,7 @@ function reset() {
               id="cb-message"
               v-model="form.message"
               rows="2"
-              placeholder="e.g. I'd like a smile design consultation"
+              placeholder="e.g. I'd like a consultation about implants or skin treatments"
             ></textarea>
           </div>
 

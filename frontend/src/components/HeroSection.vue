@@ -21,10 +21,10 @@ import heroPhoto from '../assets/images/hero-portrait.webp'
     <!-- <span class="hero__tag" aria-hidden="true">Hero photo · close-up natural smile, warm light</span> -->
 
     <div class="container hero__content">
-      <p class="hero__eyebrow">Cosmetic &amp; aesthetic dentistry · Dubai</p>
+      <p class="hero__eyebrow">Implantology &amp; aesthetics · Dubai</p>
       <h1 id="hero-title" class="hero__title">
-        The art of a<br />
-        <span class="script">natural</span> smile
+        The art of<br />
+        <span class="script">natural</span> beauty
       </h1>
       <div class="hero__bottom">
         <div class="hero__ctas">

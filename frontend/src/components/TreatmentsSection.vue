@@ -25,7 +25,7 @@ function toggle(i) {
           <button
             type="button"
             class="card placeholder"
-            :class="{ 'is-active': active === i }"
+            :class="{ 'is-active': active === i, 'is-empty': !t.image }"
             @click="toggle(i)"
           >
             <img
@@ -59,7 +59,7 @@ function toggle(i) {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -141,6 +141,16 @@ function toggle(i) {
     grid-template-columns: 1fr;
     gap: 16px;
   }
+}
+
+/* Tiles without a photo yet always show their name */
+.card.is-empty .card__caption {
+  transform: translateY(0);
+}
+
+.card.is-empty .card__title {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Touch screens have no hover: always show the treatment name */

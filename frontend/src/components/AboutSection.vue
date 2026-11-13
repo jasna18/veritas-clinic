@@ -19,7 +19,7 @@ const gallery = [
       <div class="section-head">
         <p class="eyebrow eyebrow--line">About us</p>
         <h2 id="about-title" class="display">
-          Trusted &amp; professional in <span class="script">oral care</span>
+          Trusted &amp; professional in <span class="script">aesthetic care</span>
         </h2>
       </div>
 
@@ -38,15 +38,16 @@ const gallery = [
 
         <div class="about__copy">
           <p>
-            Welcome to Veritas Polyclinic – your trusted partner in oral care in Dubai. We strive to
-            offer a personal and innovative approach to dentistry, where the well-being of every
-            patient is central. Our modern practice is designed with your comfort in mind.
+            Welcome to Veritas Polyclinic – your trusted partner for advanced implantology, aesthetic
+            dentistry, medical aesthetics and cosmetic treatments in Dubai. We offer a personal and
+            innovative approach in which the well-being of every patient is central, in a modern
+            clinic designed with your comfort in mind.
           </p>
           <p>
-            Whether you are looking for general dental care, cosmetic treatments or preventive
-            measures, we are here for everyone. We combine the latest technologies with a personal
-            touch to offer you the best possible experience. Discover our innovative approach to
-            dentistry and experience the care you deserve.
+            Whether you are looking for dental implants, a smile makeover or cosmetic treatments for
+            your face and skin, our specialists work together under one roof. We combine the latest
+            technologies with a personal touch to deliver natural-looking results and the care you
+            deserve.
           </p>
           <!-- Doctor's name as a signature, in the same script as "oral care" -->
           <p class="about__signature">

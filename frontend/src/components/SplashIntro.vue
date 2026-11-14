@@ -115,9 +115,14 @@ html.intro-active .header__logo {
   transform-origin: center;
 }
 
-/* Hidden starting state (before the font is ready) */
+/* Hidden starting state (before the font is ready).
+   The oval grows from its centre with transform (not clip-path: iPhone Safari
+   doesn't render clip-path on SVG shapes and the oval disappeared) */
 .splash__logo :deep(path) {
-  clip-path: inset(50% 0 50% 0);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scaleY(0);
 }
 
 .splash__logo :deep(text) {
@@ -179,8 +184,16 @@ html.intro-active .header__logo {
 }
 
 @keyframes oval-open {
-  to {
-    clip-path: inset(0 0 0 0);
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
   }
 }
 

@@ -1,6 +1,6 @@
 <script setup>
 import { useI18n } from '../i18n'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import heroPhoto from '../assets/images/hero-portrait.webp'
 import heroVideo from '../assets/videos/hero-silk.mp4'
 
@@ -8,10 +8,30 @@ const { t } = useI18n()
 
 // Video plays on most devices; with Reduce Motion or Data Saver the still photo shows instead
 const showVideo = ref(false)
-onMounted(() => {
+const videoEl = ref(null)
+
+onMounted(async () => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const saveData = navigator.connection?.saveData === true
-  showVideo.value = !reduce && !saveData
+  if (reduce || saveData) return
+  showVideo.value = true
+  await nextTick()
+
+  const v = videoEl.value
+  if (!v) return
+  // iPhone Safari only autoplays when these are real HTML attributes
+  // (Vue sets `muted` as a property only), so set them explicitly, then start playback.
+  v.muted = true
+  v.defaultMuted = true
+  v.setAttribute('muted', '')
+  v.setAttribute('playsinline', '')
+  v.setAttribute('webkit-playsinline', '')
+  try {
+    await v.play()
+  } catch {
+    // Autoplay refused (e.g. iPhone Low Power Mode): fall back to the still photo
+    showVideo.value = false
+  }
 })
 </script>
 
@@ -22,12 +42,16 @@ onMounted(() => {
     <div class="hero__photo">
       <video
         v-if="showVideo"
+        ref="videoEl"
         :src="heroVideo"
         :poster="heroPhoto"
         autoplay
         muted
         loop
         playsinline
+        webkit-playsinline
+        disablepictureinpicture
+        disableremoteplayback
         preload="auto"
         aria-hidden="true"
         width="1280"

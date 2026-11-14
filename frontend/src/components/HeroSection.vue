@@ -1,16 +1,40 @@
 <script setup>
 import { useI18n } from '../i18n'
+import { ref, onMounted } from 'vue'
 import heroPhoto from '../assets/images/hero-portrait.webp'
+import heroVideo from '../assets/videos/hero-silk.mp4'
 
 const { t } = useI18n()
+
+// Video plays on most devices; with Reduce Motion or Data Saver the still photo shows instead
+const showVideo = ref(false)
+onMounted(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const saveData = navigator.connection?.saveData === true
+  showVideo.value = !reduce && !saveData
+})
 </script>
 
 <template>
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__bg" aria-hidden="true"></div>
-    <!-- Reception photo: right half on desktop (left in Arabic), top band on phones -->
+    <!-- Hero visual: looping silk video (Google Flow), with the still portrait as poster/fallback -->
     <div class="hero__photo">
+      <video
+        v-if="showVideo"
+        :src="heroVideo"
+        :poster="heroPhoto"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+        width="1280"
+        height="720"
+      ></video>
       <img
+        v-else
         :src="heroPhoto"
         :alt="t.hero.photoAlt"
         width="1672"
@@ -74,7 +98,9 @@ const { t } = useI18n()
   inset: 0;
 }
 
-.hero__photo img {
+.hero__photo img,
+
+.hero__photo video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -95,7 +121,8 @@ const { t } = useI18n()
 }
 
 /* Arabic: text sits on the right, so mirror the photo and the tint */
-[dir='rtl'] .hero__photo img {
+[dir='rtl'] .hero__photo img,
+[dir='rtl'] .hero__photo video {
   transform: scaleX(-1);
 }
 
@@ -239,7 +266,9 @@ const { t } = useI18n()
     mask-image: linear-gradient(to left, transparent 0%, #000 22%);
   }
 
-  .hero__photo img {
+  .hero__photo img,
+
+  .hero__photo video {
     object-position: 100% 0%;
   }
 }
@@ -263,7 +292,8 @@ const { t } = useI18n()
 
   /* Photo fills the top of the hero (her smile above the heading),
      then melts into the slate green behind the text */
-  .hero__photo img {
+  .hero__photo img,
+  .hero__photo video {
     height: calc(var(--header-h) + 440px);
     object-position: 66% 30%;
     /* hero colour blends in on all four edges of the photo */
@@ -317,7 +347,8 @@ const { t } = useI18n()
 
   /* Photo zoomed out a little: fills the top ~3/4 of the screen,
      then fades into the hero green behind the writing */
-  .hero__photo img {
+  .hero__photo img,
+  .hero__photo video {
     height: 74%;
     margin-top: calc(var(--header-h) + 70px); /* lower, so her whole head shows below the header */
     object-position: 100% 0%; /* her face sits at the photo's right edge; show from the top */

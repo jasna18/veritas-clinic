@@ -70,7 +70,7 @@ const { t } = useI18n()
   top: 14px;
   inset-inline-end: 14px;
   padding: 3px 9px;
-  border: 1px solid rgba(74, 47, 35, 0.25);
+  border: 1px solid rgba(74, 90, 86, 0.25);
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -85,7 +85,7 @@ const { t } = useI18n()
   height: 56px;
   margin: -28px 0 0 -28px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--slate) 0 7px, rgba(74, 47, 35, 0.18) 8px 15px, rgba(74, 47, 35, 0.08) 16px);
+  background: radial-gradient(circle, var(--slate) 0 7px, rgba(74, 90, 86, 0.18) 8px 15px, rgba(74, 90, 86, 0.08) 16px);
 }
 
 .map__card {

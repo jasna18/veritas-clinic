@@ -59,7 +59,7 @@ const { t, fmt } = useI18n()
 }
 
 .booking__title .script {
-  color: #d9955a;
+  color: #d39b2c;
 }
 
 .booking__steps {

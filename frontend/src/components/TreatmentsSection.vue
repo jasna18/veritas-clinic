@@ -96,7 +96,7 @@ function toggle(i) {
   position: absolute;
   inset: auto 0 0;
   padding: 48px 20px 18px;
-  background: linear-gradient(180deg, rgba(58, 37, 27, 0) 0%, rgba(58, 37, 27, 0.88) 100%);
+  background: linear-gradient(180deg, rgba(63, 77, 74, 0) 0%, rgba(63, 77, 74, 0.88) 100%);
   transform: translateY(100%);
   transition: transform 320ms var(--ease);
 }

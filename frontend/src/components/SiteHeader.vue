@@ -130,10 +130,10 @@ onBeforeUnmount(() => {
   inset: 0 0 auto;
   z-index: 50;
   height: var(--header-h);
-  background: rgba(236, 226, 212, 0.72);
+  background: rgba(214, 216, 207, 0.72);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(74, 47, 35, 0.12);
+  border-bottom: 1px solid rgba(74, 90, 86, 0.12);
   transition: background-color var(--dur) var(--ease);
 }
 
@@ -211,7 +211,7 @@ onBeforeUnmount(() => {
   gap: 12px;
   min-height: 44px;
   padding: 10px 14px;
-  border: 1px solid rgba(74, 47, 35, 0.28);
+  border: 1px solid rgba(74, 90, 86, 0.28);
   border-radius: 2px;
   background: transparent;
   font-size: 12px;
@@ -301,7 +301,7 @@ onBeforeUnmount(() => {
 }
 
 .menu__link:hover {
-  color: #e0a874;
+  color: #e2b85e;
 }
 
 .menu__num {
@@ -348,14 +348,14 @@ onBeforeUnmount(() => {
     position: fixed;
     inset: 0;
     z-index: 55;
-    background: rgba(43, 26, 18, 0.45);
+    background: rgba(30, 38, 36, 0.45);
   }
 
   .menu {
     inset: 0 0 0 auto;
     width: min(420px, 100%);
     padding: 20px 36px 32px;
-    box-shadow: -24px 0 60px rgba(43, 26, 18, 0.25);
+    box-shadow: -24px 0 60px rgba(20, 28, 26, 0.25);
   }
 
   .menu__nav {

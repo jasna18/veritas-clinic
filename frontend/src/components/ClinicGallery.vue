@@ -115,7 +115,7 @@ onBeforeUnmount(() => {
   border-radius: 14px;
   overflow: hidden;
   background: var(--sand);
-  box-shadow: 0 28px 50px -24px rgba(43, 26, 18, 0.5);
+  box-shadow: 0 28px 50px -24px rgba(40, 50, 47, 0.5);
   cursor: pointer;
   transition:
     transform 900ms var(--ease),

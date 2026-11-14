@@ -6,14 +6,14 @@ import heroVideo from '../assets/videos/hero-silk.mp4'
 
 const { t } = useI18n()
 
-// Video plays on most devices; with Reduce Motion or Data Saver the still photo shows instead
+// Video plays on all devices (including phones with Reduce Motion on, like the other animations);
+// with Data Saver, or if the phone refuses to play it, the still photo shows instead
 const showVideo = ref(false)
 const videoEl = ref(null)
 
 onMounted(async () => {
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const saveData = navigator.connection?.saveData === true
-  if (reduce || saveData) return
+  if (saveData) return
   showVideo.value = true
   await nextTick()
 
@@ -31,7 +31,13 @@ onMounted(async () => {
   } catch {
     // Autoplay refused (e.g. iPhone Low Power Mode): fall back to the still photo
     showVideo.value = false
+    return
   }
+  // Safety net: if nothing is playing after 4s, show the still photo instead of a blank area
+  setTimeout(() => {
+    const el = videoEl.value
+    if (el && (el.readyState < 2 || el.currentTime === 0)) showVideo.value = false
+  }, 4000)
 })
 </script>
 
@@ -39,7 +45,7 @@ onMounted(async () => {
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__bg" aria-hidden="true"></div>
     <!-- Hero visual: looping silk video (Google Flow), with the still portrait as poster/fallback -->
-    <div class="hero__photo">
+    <div class="hero__photo" :class="{ 'has-video': showVideo }">
       <video
         v-if="showVideo"
         ref="videoEl"
@@ -53,6 +59,7 @@ onMounted(async () => {
         disablepictureinpicture
         disableremoteplayback
         preload="auto"
+        @error="showVideo = false"
         aria-hidden="true"
         width="1280"
         height="720"
@@ -120,6 +127,7 @@ onMounted(async () => {
 .hero__photo {
   position: absolute;
   inset: 0;
+  z-index: 0; /* keeps the photo, video and its overlays underneath the hero text */
 }
 
 .hero__photo img,
@@ -331,10 +339,32 @@ onMounted(async () => {
     mask-composite: intersect;
   }
 
+  /* iPhone Safari can fail to draw a <video> that has a CSS mask, so on phones and
+     tablets the video has no mask; this overlay paints the same edge fade instead */
+  .hero__photo video {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .hero__photo.has-video::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: calc(var(--header-h) + 440px);
+    pointer-events: none;
+    background:
+      linear-gradient(to right, #5f6e6a 0%, rgba(95, 110, 106, 0) 16%, rgba(95, 110, 106, 0) 84%, #5f6e6a 100%),
+      linear-gradient(to bottom, #657470 0%, rgba(101, 116, 112, 0) 22%, rgba(80, 94, 90, 0) 62%, #505e5a 100%);
+  }
+
   .hero__photo::after,
   [dir='rtl'] .hero__photo::after {
     content: '';
     position: absolute;
+    z-index: 2;
     inset: 0;
     background: linear-gradient(
       180deg,
@@ -379,6 +409,18 @@ onMounted(async () => {
     /* soft fade at the top and bottom edges into the hero green */
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 72%, transparent 100%);
     mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 72%, transparent 100%);
+  }
+
+  .hero__photo.has-video::before {
+    top: calc(var(--header-h) + 70px);
+    height: 74%;
+    background: linear-gradient(
+      to bottom,
+      #677672 0%,
+      rgba(103, 118, 114, 0) 14%,
+      rgba(76, 89, 84, 0) 72%,
+      #4c5954 100%
+    );
   }
 
   /* Hero green fades in only at the bottom, behind the writing */

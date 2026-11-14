@@ -395,7 +395,7 @@ onBeforeUnmount(() => {
   /* Arabic: panel slides in from the left */
   [dir='rtl'] .menu {
     inset: 0 auto 0 0;
-    box-shadow: 24px 0 60px rgba(43, 26, 18, 0.25);
+    box-shadow: 24px 0 60px rgba(20, 28, 26, 0.25);
   }
 
   [dir='rtl'] .menu-enter-from,

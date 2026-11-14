@@ -9,9 +9,11 @@ import FaqSection from './components/FaqSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import LocationSection from './components/LocationSection.vue'
 import SiteFooter from './components/SiteFooter.vue'
+import SplashIntro from './components/SplashIntro.vue'
 </script>
 
 <template>
+  <SplashIntro />
   <SiteHeader />
   <main id="top">
     <HeroSection />
